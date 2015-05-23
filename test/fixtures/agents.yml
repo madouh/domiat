@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  region_id: 
+  neighbour_id: 
+  street: MyString
+  address: MyString
+  activity_id: 
+  brief_of_activity: MyText
+  day_off: MyString
+  twenty_four: false
+  word1: MyString
+  word2: MyString
+  word3: MyString
+  word4: MyString
+  word5: MyString
+  tel1: MyString
+  tel2: MyString
+  tel3: MyString
+  email: MyString
+  start: 2015-05-23 01:52:05
+  end: 2015-05-23 01:52:05
+  website1: MyString
+  website2: MyString
+  can_announce: false
+
+two:
+  name: MyString
+  region_id: 
+  neighbour_id: 
+  street: MyString
+  address: MyString
+  activity_id: 
+  brief_of_activity: MyText
+  day_off: MyString
+  twenty_four: false
+  word1: MyString
+  word2: MyString
+  word3: MyString
+  word4: MyString
+  word5: MyString
+  tel1: MyString
+  tel2: MyString
+  tel3: MyString
+  email: MyString
+  start: 2015-05-23 01:52:05
+  end: 2015-05-23 01:52:05
+  website1: MyString
+  website2: MyString
+  can_announce: false

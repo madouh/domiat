@@ -1,0 +1,111 @@
+<%= form_for(@agent) do |f| %>
+  <% if @agent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this agent from being saved:</h2>
+
+      <ul>
+      <% @agent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :region_id %><br>
+    <%= f.text_field :region_id %>
+  </div>
+  <div class="field">
+    <%= f.label :neighbour_id %><br>
+    <%= f.text_field :neighbour_id %>
+  </div>
+  <div class="field">
+    <%= f.label :street %><br>
+    <%= f.text_field :street %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :activity_id %><br>
+    <%= f.text_field :activity_id %>
+  </div>
+  <div class="field">
+    <%= f.label :brief_of_activity %><br>
+    <%= f.text_area :brief_of_activity %>
+  </div>
+  <div class="field">
+    <%= f.label :day_off %><br>
+    <%= f.text_field :day_off %>
+  </div>
+  <div class="field">
+    <%= f.label :twenty_four %><br>
+    <%= f.check_box :twenty_four %>
+  </div>
+  <div class="field">
+    <%= f.label :word1 %><br>
+    <%= f.text_field :word1 %>
+  </div>
+  <div class="field">
+    <%= f.label :word2 %><br>
+    <%= f.text_field :word2 %>
+  </div>
+  <div class="field">
+    <%= f.label :word3 %><br>
+    <%= f.text_field :word3 %>
+  </div>
+  <div class="field">
+    <%= f.label :word4 %><br>
+    <%= f.text_field :word4 %>
+  </div>
+  <div class="field">
+    <%= f.label :word5 %><br>
+    <%= f.text_field :word5 %>
+  </div>
+  <div class="field">
+    <%= f.label :tel1 %><br>
+    <%= f.text_field :tel1 %>
+  </div>
+  <div class="field">
+    <%= f.label :tel2 %><br>
+    <%= f.text_field :tel2 %>
+  </div>
+  <div class="field">
+    <%= f.label :tel3 %><br>
+    <%= f.text_field :tel3 %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :start %><br>
+    <%= f.time_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br>
+    <%= f.time_select :end %>
+  </div>
+  <div class="field">
+    <%= f.label :website1 %><br>
+    <%= f.text_field :website1 %>
+  </div>
+  <div class="field">
+    <%= f.label :website2 %><br>
+    <%= f.text_field :website2 %>
+  </div>
+  <div class="field">
+    <%= f.label :can_announce %><br>
+    <%= f.check_box :can_announce %>
+  </div>
+  <%= show_simple_captcha(:object=>"agent") %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

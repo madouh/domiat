@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Agents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Region</th>
+      <th>Neighbour</th>
+      <th>Street</th>
+      <th>Address</th>
+      <th>Activity</th>
+      <th>Brief of activity</th>
+      <th>Day off</th>
+      <th>Twenty four</th>
+      <th>Word1</th>
+      <th>Word2</th>
+      <th>Word3</th>
+      <th>Word4</th>
+      <th>Word5</th>
+      <th>Tel1</th>
+      <th>Tel2</th>
+      <th>Tel3</th>
+      <th>Email</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Website1</th>
+      <th>Website2</th>
+      <th>Can announce</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @agents.each do |agent| %>
+      <tr>
+        <td><%= agent.name %></td>
+        <td><%= agent.region %></td>
+        <td><%= agent.neighbour %></td>
+        <td><%= agent.street %></td>
+        <td><%= agent.address %></td>
+        <td><%= agent.activity %></td>
+        <td><%= agent.brief_of_activity %></td>
+        <td><%= agent.day_off %></td>
+        <td><%= agent.twenty_four %></td>
+        <td><%= agent.word1 %></td>
+        <td><%= agent.word2 %></td>
+        <td><%= agent.word3 %></td>
+        <td><%= agent.word4 %></td>
+        <td><%= agent.word5 %></td>
+        <td><%= agent.tel1 %></td>
+        <td><%= agent.tel2 %></td>
+        <td><%= agent.tel3 %></td>
+        <td><%= agent.email %></td>
+        <td><%= agent.start %></td>
+        <td><%= agent.end %></td>
+        <td><%= agent.website1 %></td>
+        <td><%= agent.website2 %></td>
+        <td><%= agent.can_announce %></td>
+        <td><%= link_to 'Show', agent %></td>
+        <td><%= link_to 'Edit', edit_agent_path(agent) %></td>
+        <td><%= link_to 'Destroy', agent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Agent', new_agent_path %>

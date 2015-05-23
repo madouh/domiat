@@ -1,0 +1,7 @@
+
+<h1>مرحبا بكم في مدينة دمياط الجديدة</h1>
+<p> من أجمل  المدن في شمال مصر</p>
+<% (1..15).each do |i|%>
+<%= image_tag "image#{i}.jpeg",:class => 'images' %>
+<% end %>
+<%= image_tag "logo.jpeg", :id => "logo" %>

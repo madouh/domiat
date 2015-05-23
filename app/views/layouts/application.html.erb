@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <title>New Domiat - الموقع تحت الانشاء </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- Start PureCSSMenu.com MENU -->
+<ul class="pureCssMenu menum">
+	<li class="menui"><a class="menui" href="<%= root_path %>" >الصفحة الرئيسية</a></li>
+	<li class="menui"><a class="menui" href="#"><span>خدمات الموقع</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul class="menum">
+		<li class="menui"><a class="menui" href="#">ما هو الجديد؟</a></li>
+		<li class="menui"><a class="menui" href="#"><span>سياستنا</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<ul class="menum">
+			<li class="menui"><a class="menui" href="#">المجانية</a></li>
+			<li class="menui"><a class="menui" href="#">المدفوعة</a></li>
+		</ul>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+		<li class="menui"><a class="menui" href="#"><span>البحث</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<ul class="menum">
+			<li class="menui"><a class="menui" href="#">1. بالاسم </a></li>
+			<li class="menui"><a class="menui" href="#">2. بالنشاط </a></li>
+			<li class="menui"><a class="menui" href="#">3. بالمكان </a></li>
+		</ul>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+		<li class="menui"><a class="menui" href="#"><span> معلومات</span><!--<![if gt IE 6]></a><![endif]>[if lte IE 6]><table><tr><td><![endif]-->
+		<!-- <ul class="menum">
+			<li class="menui"><a class="menui" href="#"><span> </span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]--> 
+			<ul class="menum">
+				<li class="menui"><a class="menui" href="#">جهاز التعمير</a></li>
+				<li class="menui"><a class="menui" href="#">جامعات</a></li>
+				<li class="menui"><a class="menui" href="#">مدارس</a></li>
+				<li class="menui"><a class="menui" href="#">الكهرباء</a></li>
+				<li class="menui"><a class="menui" href="#">المياه و الصرف</a></li>
+				<li class="menui"><a class="menui" href="#">بنوك</a></li>
+				<li class="menui"><a class="menui" href="#">عناوين بالمدينة</a></li>
+				<li class="menui"><a class="menui" href="#">محافظة دمياط</a></li>
+			</ul>
+			<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+
+
+
+
+			<!-- <li class="menui"><a class="menui" href="#"><span>MAC OS</span><![if gt IE 6]></a><![endif]> --><!--[if lte IE 6]><table><tr><td><![endif]-->
+			<!-- <ul class="menum">
+				<li class="menui"><a class="menui" href="#">Firefox</a></li>
+				<li class="menui"><a class="menui" href="#">Safari</a></li>
+				<li class="menui"><a class="menui" href="#">Internet Explorer</a></li>
+			</ul> -->
+			<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+			<!-- <li class="menui"><a class="menui" href="#"><span>Unix/Linux OS</span> --><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+			<!-- <ul class="menum">
+				<li class="menui"><a class="menui" href="#">Firefox</a></li>
+				<li class="menui"><a class="menui" href="#">Konqueror</a></li>
+				<li class="menui"><a class="menui" href="#">Item #41</a></li>
+			</ul> -->
+			<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+		<!-- </ul>
+		[if lte IE 6]></td></tr></table></a><![endif]</li> -->
+	</ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+	<li class="menui"><a class="menui" href="#"><span>أماكن المدينة</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul class="menum">
+		<li class="menui"><a class="menui" href="#">الحي اﻷول</a></li>
+		<li class="menui"><a class="menui" href="#">الحي الثاني</a></li>
+		<li class="menui"><a class="menui" href="#">الحي الثالث</a></li>
+		<li class="menui"><a class="menui" href="#">الحي الرابع</a></li>
+		<li class="menui"><a class="menui" href="#">الحي الخامس</a></li>
+		<li class="menui"><a class="menui" href="#">الحي المتميز</a></li>
+	</ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+	<li class="menui"><a class="menui" href="#"><span>أنشطة</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+	<ul class="menum">
+		<li class="menui"><a class="menui" href="#">أطباء<![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<!-- <ul class="menum">
+			<li class="menui"><a class="menui" href="#">باطنة</a></li>
+			<li class="menui"><a class="menui" href="#">قلب</a></li>
+			<li class="menui"><a class="menui" href="#">مخ و اعصاب</a></li>
+			<li class="menui"><a class="menui" href="#">أوردة</a></li>
+			<li class="menui"><a class="menui" href="#">جراحة</a></li>
+			<li class="menui"><a class="menui" href="#">عظام</a></li>
+			<li class="menui"><a class="menui" href="#">عيون</a></li>
+			<li class="menui"><a class="menui" href="#">جلدية</a></li>
+			<li class="menui"><a class="menui" href="#">نساء و توليد</a></li>
+			<li class="menui"><a class="menui" href="#">أسنان</a></li>
+			<li class="menui"><a class="menui" href="#">معامل تحاليل</a></li>
+			<li class="menui"><a class="menui" href="#">أشعة</a></li>
+
+
+		</ul> -->
+		<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+		<li class="menui"><a class="menui" href="#">مستشفيات</a></li>
+		<li class="menui"><a class="menui" href="#">صيدليات</a></li>
+		<li class="menui"><a class="menui" href="#">محامون</a></li>
+		<li class="menui"><a class="menui" href="#">مهندسون</a></li>
+		<li class="menui"><a class="menui" href="#">مدرسون</a></li>
+		<li class="menui"><a class="menui" href="#">مقاولون</a></li>
+		<li class="menui"><a class="menui" href="#"><span>فنيون</span><![if gt IE 6]></a><![endif]><!--[if lte IE 6]><table><tr><td><![endif]-->
+		<ul class="menum">
+			<li class="menui"><a class="menui" href="#">سباكة</a></li>
+			<li class="menui"><a class="menui" href="#">كهرباء</a></li>
+			<li class="menui"><a class="menui" href="#">نجارة</a></li>
+			<li class="menui"><a class="menui" href="#">نقاشة</a></li>
+			<li class="menui"><a class="menui" href="#">بناء</a></li>
+			<li class="menui"><a class="menui" href="#">صيانة أجهزة</a></li>
+		</ul>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+		<!-- <li class="menui"><a class="menui" href="#">Item #52</a></li>
+		<li class="menui"><a class="menui" href="#">Item #51</a></li>
+		<li class="menui"><a class="menui" href="#">Item #70</a></li>
+		<li class="menui"><a class="menui" href="#">Item #71</a></li>
+		<li class="menui"><a class="menui" href="#">Item #72</a></li>
+		<li class="menui"><a class="menui" href="#">Item #73</a></li> -->
+	</ul>
+	<!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+	<li class="menui"><a class="menui" href="#">خدمات الإصطياف</a></li>
+	<li class="menui"><a class="menui" href="#">إدراج نشاط</a></li>
+	<li class="menui"><a class="menui" href="<%= about_path %>" >اتصل بنا</a></li>
+</ul>
+<%= yield %>
+
+</body>
+</html>
