@@ -36,7 +36,7 @@ class AgentsController < ApplicationController
 
     respond_to do |format|
       if @agent.save_with_captcha
-        AgentMailer.welcome_email(@agent).deliver_now
+        #AgentMailer.welcome_email(@agent).deliver_now
         format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
         format.json { render :show, status: :created, location: @agent }
       else
