@@ -2,10 +2,10 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  :user_name => ENV["GMAIL_USERNAME"],
-  :password => ENV["GMAIL_PASSWORD"],
+  :user_name => ENV["SENDGRID_USERNAME"],
+  :password => ENV["SENDGRID_PASSWORD"],
   :domain => ENV["DOMAIN"],
-  :address => ENV["GMAIL_HOST"],
+  :address => ENV["SENDGRID_HOST"],
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
