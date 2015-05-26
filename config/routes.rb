@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :agents
+  resources :agents do
+    member do
+      get :confirm # => 'agents#confirm'
+    end
+  end
 
   resources :activities
 

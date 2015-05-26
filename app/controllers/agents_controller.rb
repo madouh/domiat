@@ -1,7 +1,7 @@
 class AgentsController < ApplicationController
       include SimpleCaptcha::ControllerHelpers
 
-  before_action :set_agent, only: [:show, :edit, :update, :destroy]
+  before_action :set_agent, only: [:show, :edit, :update, :destroy, :confirm]
 
   # GET /agents
   # GET /agents.json
@@ -23,6 +23,12 @@ class AgentsController < ApplicationController
   def edit
   end
 
+  def confirm
+    @agent.update(:can_announce => true)
+    # redirect_to admins_path
+    #render :text => (@admin.name).to_s + "  " + (@admin.email).to_s + "  "+ (@admin.login).to_s + "  " + (@admin.confirmed).to_s
+  end
+
   # POST /agents
   # POST /agents.json
   def create
@@ -30,6 +36,7 @@ class AgentsController < ApplicationController
 
     respond_to do |format|
       if @agent.save_with_captcha
+        AgentMailer.welcome_email(@agent).deliver_now
         format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
         format.json { render :show, status: :created, location: @agent }
       else

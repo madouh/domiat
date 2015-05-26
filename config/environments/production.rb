@@ -1,8 +1,19 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+  :user_name => ENV["SENDGRID_USERNAME"],
+  :password => ENV["SENDGRID_PASSWORD"],
+  :domain => ENV["DOMAIN"],
+  :address => ENV["SENDGRID_HOST"],
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
   # Code is not reloaded between requests.
   config.cache_classes = true
+  #config.action_mailer.default_url_options = {host: 'new-domiat.com'}
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -62,7 +73,8 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+
+   config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
