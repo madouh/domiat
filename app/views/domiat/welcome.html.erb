@@ -1,7 +1,11 @@
-
+<% if user_signed_in? %>
+<h3> welcome <%= current_user.email %> </h3>
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+<% else %>
+<% end %>
 <h1>مرحبا بكم في مدينة دمياط الجديدة</h1>
 <h3> من أجمل  المدن في شمال مصر</h3>
 <% (1..15).each do |i|%>
-<%= image_tag "image#{i}.jpeg",:class => 'images' %>
+<%= image_tag "image#{i}.jpg",:class => 'images' %>
 <% end %>
-<%= image_tag "logo.jpeg", :id => "logo" %>
+<%= image_tag "logo.jpg", :id => "logo" %>

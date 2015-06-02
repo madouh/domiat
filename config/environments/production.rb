@@ -1,17 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  ActionMailer::Base.smtp_settings = {
-  :address        => 'smtp.sendgrid.net',
-  :port           => '587',
-  :authentication => :plain,
-  :user_name      => ENV['SENDGRID_USERNAME'],
-  :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => 'domiat.herokuapp.com',
-  :enable_starttls_auto => true
-}
+  config.action_mailer.default_url_options ={host: 'localhost', port: 3000}# {host: 'domiat.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.action_mailer.default_url_options = {host: 'domiat.herokuapp.com'}
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -56,6 +49,7 @@ Rails.application.configure do
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
+  #config.assets.initialize_on_precompile = false
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]

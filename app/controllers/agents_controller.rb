@@ -1,6 +1,7 @@
 class AgentsController < ApplicationController
+      include AgentsHelper
       include SimpleCaptcha::ControllerHelpers
-
+  before_filter :authenticate_user!, except: [ :edit, :show ]
   before_action :set_agent, only: [:show, :edit, :update, :destroy, :confirm]
 
   # GET /agents
@@ -37,6 +38,10 @@ class AgentsController < ApplicationController
     respond_to do |format|
       if @agent.save_with_captcha
         AgentMailer.welcome_email(@agent).deliver_now
+        #sending SMS with saved agent's data
+        send_sms(@agent)
+        AgentMailer.inform_admin(@agent).deliver_now
+
         format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
         format.json { render :show, status: :created, location: @agent }
       else
@@ -78,6 +83,6 @@ class AgentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def agent_params
-      params.require(:agent).permit(:name, :region_id, :neighbour_id, :street, :address, :activity_id, :brief_of_activity, :day_off, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key)
+      params.require(:agent).permit(:name, :region, :neighbour, :street, :address, :activity, :brief_of_activity, :day_off, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key)
     end
 end

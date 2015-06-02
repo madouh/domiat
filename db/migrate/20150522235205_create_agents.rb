@@ -2,11 +2,11 @@ class CreateAgents < ActiveRecord::Migration
   def change
     create_table :agents do |t|
       t.string :name
-      t.references :region, index: true
-      t.references :neighbour, index: true
+      t.string :region
+      t.string :neighbour
       t.string :street
       t.string :address
-      t.references :activity, index: true
+      t.string :activity
       t.text :brief_of_activity
       t.string :day_off
       t.boolean :twenty_four
@@ -27,8 +27,6 @@ class CreateAgents < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :agents, :regions
-    add_foreign_key :agents, :neighbours
-    add_foreign_key :agents, :activities
+    
   end
 end

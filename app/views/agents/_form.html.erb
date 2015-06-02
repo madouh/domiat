@@ -16,12 +16,12 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :region_id %><br>
-    <%= f.text_field :region_id %>
+    <%= f.label :region %><br>
+    <%= collection_select(:agent, :region, Region.all, :name, :name, {},{:multiple =>false}) %>
   </div>
   <div class="field">
-    <%= f.label :neighbour_id %><br>
-    <%= f.text_field :neighbour_id %>
+    <%= f.label :neighbour %><br>
+    <%= collection_select(:agent, :neighbour, Neighbour.all, :name, :name, {},{:multiple =>false}) %>
   </div>
   <div class="field">
     <%= f.label :street %><br>
@@ -32,8 +32,8 @@
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :activity_id %><br>
-    <%= f.text_field :activity_id %>
+    <%= f.label :activity %><br>
+   <%= collection_select(:agent, :activity, Activity.all, :name, :name, {},{:multiple =>false}) %>
   </div>
   <div class="field">
     <%= f.label :brief_of_activity %><br>

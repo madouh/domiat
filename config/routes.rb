@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :agents do
     member do
       get :confirm # => 'agents#confirm'
