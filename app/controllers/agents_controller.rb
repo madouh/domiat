@@ -1,13 +1,19 @@
+# encoding: UTF-8
 class AgentsController < ApplicationController
       include AgentsHelper
       include SimpleCaptcha::ControllerHelpers
-  before_filter :authenticate_user!, except: [ :edit, :show ]
-  before_action :set_agent, only: [:show, :edit, :update, :destroy, :confirm]
+  before_filter :authenticate_user!, except: [ :show ]
+  before_action :i_am_admin , only: [:toggle, :edit, :update, :destroy]
+  before_action :set_agent, only: [:toggle, :show, :edit, :update, :destroy]
 
   # GET /agents
   # GET /agents.json
   def index
+    if current_user.is_admin?
     @agents = Agent.all
+    else
+      redirect_to :root 
+    end
   end
 
   # GET /agents/1
@@ -24,23 +30,18 @@ class AgentsController < ApplicationController
   def edit
   end
 
-  def confirm
-    @agent.update(:can_announce => true)
-    # redirect_to admins_path
-    #render :text => (@admin.name).to_s + "  " + (@admin.email).to_s + "  "+ (@admin.login).to_s + "  " + (@admin.confirmed).to_s
-  end
-
   # POST /agents
   # POST /agents.json
   def create
+    #render :text => params.inspect
     @agent = Agent.new(agent_params)
 
     respond_to do |format|
       if @agent.save_with_captcha
-        AgentMailer.welcome_email(@agent).deliver_now
+        # AgentMailer.welcome_email(@agent).deliver_now
         #sending SMS with saved agent's data
-        send_sms(@agent)
-        AgentMailer.inform_admin(@agent).deliver_now
+        # send_sms(@agent)
+        # AgentMailer.inform_admin(@agent).deliver_now
 
         format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
         format.json { render :show, status: :created, location: @agent }
@@ -74,15 +75,42 @@ class AgentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  #verify action is to mark the "ok" field in the agents table to true to be showon in searching.
+  # verify is a member of agents route- get agents/:id/verify.
+  def toggle
+    if @agent.ok 
+     @agent.update(:ok => false)
+    flash[:notice] = "The agent is waited"
+  else
+    @agent.update(:ok => true)
+    flash[:notice] = "The agent is verified, ThanX  "
+  end
+    redirect_to agents_path
+  end
+
+  #search action is to search through the verified agents aboute certain query
+  def search
+
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agent
       @agent = Agent.find(params[:id])
     end
-
+# verify if the current user is admin , if not, redirect_to the root path
+    def i_am_admin
+      unless current_user.is_admin?
+        redirect_to :root    
+        flash[:error] = "You haven't the rights to access the required page."
+     
+       end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def agent_params
-      params.require(:agent).permit(:name, :region, :neighbour, :street, :address, :activity, :brief_of_activity, :day_off, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key)
+      params[:agent][:day_off] ||= []
+
+      params.require(:agent).permit(:name, :region, :neighbour, :street, :address, :activity, :brief_of_activity, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key, day_off: [])
     end
 end

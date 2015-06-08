@@ -114,5 +114,7 @@
   <%= @agent.can_announce %>
 </p>
 
-<%= link_to 'Edit', edit_agent_path(@agent) %> |
+<%= link_to 'Edit', edit_agent_path(@agent) %> 
+<% if current_user.is_admin? %>|
 <%= link_to 'Back', agents_path %>
+<% end %>

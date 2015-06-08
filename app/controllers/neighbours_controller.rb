@@ -1,4 +1,7 @@
 class NeighboursController < ApplicationController
+  before_filter :authenticate_user!
+  before_action :i_am_admin
+
   before_action :set_neighbour, only: [:show, :edit, :update, :destroy]
 
   # GET /neighbours
@@ -66,7 +69,13 @@ class NeighboursController < ApplicationController
     def set_neighbour
       @neighbour = Neighbour.find(params[:id])
     end
-
+    # verify if the current user is admin , if not, redirect_to the root path
+    def i_am_admin
+      unless current_user.is_admin?
+        redirect_to :root    
+        flash[:error] = "You haven't the rights to access the required page."
+       end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def neighbour_params
       params.require(:neighbour).permit(:name)

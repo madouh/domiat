@@ -10,9 +10,21 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require bootstrap.min
+ *= require bootstrap-theme.min
  *= require_self
+ *= require chosen
+ *= require_tree .
  */
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
+       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 
 ul.pureCssMenu ul{display:none}
 ul.pureCssMenu li:hover>ul{display:block}
@@ -151,3 +163,27 @@ ul.pureCssMenu{
   	padding-left: 10px;
   }
 
+table th{
+	width:auto;
+}
+#error{
+	font-size: 30px;
+	color:red;
+	background-color: pink;
+	border:2px solid black;
+	padding-bottom: 20px;
+	text-align: center;
+
+}
+#notice{
+	font-size: 30px;
+	color:green;
+	background-color: yellow;
+	border:2px solid black;
+	padding-bottom: 20px;
+	text-align: center;
+
+}
+#agent_day_off_chosen > ul > li{
+	float:right;
+}

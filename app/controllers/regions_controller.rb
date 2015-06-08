@@ -1,5 +1,8 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: [:show, :edit, :update, :destroy]
+    before_filter :authenticate_user!
+    before_action :i_am_admin
+
+    before_action :set_region, only: [:show, :edit, :update, :destroy]
 
   # GET /regions
   # GET /regions.json
@@ -66,7 +69,14 @@ class RegionsController < ApplicationController
     def set_region
       @region = Region.find(params[:id])
     end
-
+    # verify if the current user is admin , if not, redirect_to the root path
+    def i_am_admin
+      unless current_user.is_admin?
+        redirect_to :root    
+        flash[:error] = "You haven't the rights to access the required page."
+     
+       end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
       params.require(:region).permit(:name)

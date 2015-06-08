@@ -121,7 +121,17 @@
 	<li class="menui"><a class="menui" href="#">إدراج نشاط</a></li>
 	<li class="menui"><a class="menui" href="<%= about_path %>" >اتصل بنا</a></li>
 </ul>
-<p class="notice"><%= notice %></p>
+
+<% flash.each do |key, msg| %>
+<%= content_tag :p, msg, :id => key %>
+<% end %>
+
+<% if user_signed_in? %>
+<h3>Hello <%= current_user.username %> </h3>
+<%= link_to "log out", destroy_user_session_path , :method => 'delete' %>
+<% else %>
+<%= link_to "log in", new_user_session_path %>|<%= link_to "Register", new_user_registration_path %>
+<% end %>
 
 <%= yield %>
 

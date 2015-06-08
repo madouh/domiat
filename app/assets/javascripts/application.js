@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require chosen-jquery
+//= require bootstrap.min
 //= require turbolinks
 //= require_tree .
+$(function(){
+$('#agent_day_off').chosen();
+ 			});

@@ -1,0 +1,42 @@
+// Place all the styles related to the agents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+form{
+	width:200px;
+	margin-right:50px;
+}
+form *{
+	font-size:16px;
+}
+#agent_twenty_four, #agent_can_announce{
+	width:30px;
+}
+#agent_activity,#agent_name,#agent_region,#agent_neighbour,#agent_email,#agent_address,#agent_street,#agent_day_off,#agent_tel1,#agent_tel2,#agent_tel3,#agent_website1,#agent_website2{
+	width:250px;
+}
+#agent_word1, #agent_word2,#agent_word3,#agent_word4,#agent_word5{
+	width:150px;
+}
+h1{
+	text-aligh:center;
+	margin-right:50px;
+
+}
+fieldset{
+  	padding-right: 38px;
+  	width: 300px;
+  	border:1px solid black;
+    border-radius: 25px;
+    background-color:pink;
+
+}
+legend{
+	width:100px;
+}
+#agent_brief_of_activity{
+	width:270px;
+	height:50px;
+
+}
+

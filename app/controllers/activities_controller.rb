@@ -1,5 +1,8 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+    before_filter :authenticate_user!
+    before_action :i_am_admin
+
+    before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   # GET /activities
   # GET /activities.json
@@ -66,7 +69,8 @@ class ActivitiesController < ApplicationController
     def set_activity
       @activity = Activity.find(params[:id])
     end
-
+    # verify if the current user is admin , if not, redirect_to the root path
+   
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
       params.require(:activity).permit(:name)

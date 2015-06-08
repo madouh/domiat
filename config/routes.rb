@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users #, :controllers => {:registerations=> "registerations"}
   resources :agents do
-    member do
-      get :confirm # => 'agents#confirm'
+       member do
+         get 'toggle'
     end
   end
 
