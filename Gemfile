@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'backup'
-gem 'clockwork'
+#gem 'backup'
+#gem 'clockwork'
+#gem "heroku_backup_task"
+gem "pgbackups-archive"
+gem 'aws-sdk'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
