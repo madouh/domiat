@@ -13,28 +13,77 @@
 
     <div class="container">
     <div class="row">
+     <div class="col-md-6" style="float:right;">
+
+        <div class="form-group" >
+          <% unless current_user.is_admin? %>
+          <%= f.label "الاسم" %><%= f.text_field :name ,:class => "form-control" , :value => current_user.username , :readonly => true %>
+          <% else %>
+          <%= f.label "الاسم" %><%= f.text_field :name ,:class => "form-control" , :value => @agent.name  %>
+          <% end %>
+        </div>
+        <div class="form-group">
+        <%= f.label "الحي او المنطقة" %><br><%= collection_select(:agent, :region, Region.all, :name, :name, {},{:multiple =>false}) %>
+        </div>
+        <div class="form-group">
+        <%= f.label "المجاورة أو الناحية" %><br><%= collection_select(:agent, :neighbour, Neighbour.all, :name, :name, {},{:multiple =>false}) %>
+        </div>
+        <div class="form-group">
+        <%= f.label "الشارع" %><%= f.text_field :street,:class => "form-control" %>
+        </div>
+      <div class="form-group">
+        <%= f.label "العنوان" %><%= f.text_field :address,:class => "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "النشاط" %><br><%= collection_select(:agent, :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false})  %>
+      </div>
+      <div class="form-group">
+        <%= f.label "مختصر عن النشاط" %><br><%= f.text_area :brief_of_activity %>
+      </div>
+      <fieldset>
+      <legend>كلمات البحث :</legend>
+      <div class="form-group">
+        <%= f.label "كلمة بحث" %><%= f.text_field :word1,:class => "form-control" %>
+       </div>
+       <div class="form-group">  
+        <%= f.label  "كلمة بحث" %><%= f.text_field :word2,:class => "form-control" %>
+       </div>
+      <div class="form-group"> 
+        <%= f.label "كلمة بحث" %><%= f.text_field :word3,:class => "form-control" %>
+      </div>
+      <div class="form-group"> 
+        <%= f.label  "كلمة بحث" %><%= f.text_field :word4,:class => "form-control" %>
+      </div>
+      <div class="form-group"> 
+        <%= f.label "كلمة بحث" %><%= f.text_field :word5,:class => "form-control" %>
+      </div> 
+
+        </fieldset>
+      
+     </div>
      <div class="col-md-6">
 
-  <div class="form-group">
-    <%= f.label "تليفون" %><%= f.text_field :tel1,:class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "تليفون" %><%= f.text_field :tel2,:class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "تليفون" %><%= f.text_field :tel3,:class => "form-control" %>
-  </div>
-  <!-- <div class="form-group">
-    <%= f.label "بريد الكتروني" %><%= f.text_field :email,:class => "form-control",:value => current_user.email , :readonly => true %>
-  </div> -->
-  <div class="form-group">
-    <%= f.label "بداية العمل (ساعة , دقيقة)" %><br><%= f.time_select :start,:class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "نهاية العمل (ساعة , دقيقة)" %><br><%= f.time_select :end,:class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "أيام العطلة" %><br><%= f.select(:day_off, [['الجمعة', 'الجمعة'],
+
+      <div class="form-group">
+        <%= f.label "تليفون" %><%= f.text_field :tel1,:class => "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "تليفون" %><%= f.text_field :tel2,:class => "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "تليفون" %><%= f.text_field :tel3,:class => "form-control" %>
+      </div>
+       <div class="form-group">
+      <%= f.label "بريد الكتروني" %><%= f.text_field :email,:class => "form-control",:value => current_user.email , :readonly => true %>
+      </div> 
+      <div class="form-group">
+      <%= f.label "بداية العمل (ساعة , دقيقة)" %><br><%= f.time_select :start,:class => "form-control" %>
+       </div>
+        <div class="form-group">
+        <%= f.label "نهاية العمل (ساعة , دقيقة)" %><br><%= f.time_select :end,:class => "form-control" %>
+        </div>
+        <div class="form-group">
+        <%= f.label "أيام العطلة" %><br><%= f.select(:day_off, [['الجمعة', 'الجمعة'],
                                   ['السبت', 'السبت'],
                                   ['اﻷحد', 'اﻷحد'],
                                   ['اﻹثنين', 'اﻹثنين'],
@@ -44,79 +93,30 @@
                                  ],{:include_blank => true},
                                    { :multiple => true, :data => {:placeholder => 'اختر أيام العطلة'} , :class => "form-control" }
                                  ) %>
-  </div>
-  <div class="form-group">
-    <%= f.label "العمل 24 ساعة يومياً" %>
-    <%= f.check_box :twenty_four, :class => "form-control" %>
-  </div>
+        </div>
+        <div class="form-group">
+          <%= f.label "العمل 24 ساعة يومياً" %>
+          <%= f.check_box :twenty_four, :class => "form-control" %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label "موقع نت" %><%= f.text_field :website1, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "موقع نت" %><%= f.text_field :website2, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "ارغب في الإعلان مستقبلاً" %>
-    <%= f.check_box :can_announce, :class => "form-control" %>
-  </div>
-  <%= show_simple_captcha(:object=>"agent") %>
-  <br>
-
-  <div class="actions">
-    <%= f.submit "تسجيل", :class => "btn btn-success btn-lg" %>
-  </div>
-
-     </div>
-     <div class="col-md-6">
-<div class="form-group" >
-  <% unless current_user.is_admin? %>
-    <%= f.label "الاسم" %><%= f.text_field :name ,:class => "form-control" , :value => current_user.username , :readonly => true %>
-    <% else %>
-    <%= f.label "الاسم" %><%= f.text_field :name ,:class => "form-control" , :value => @agent.name  %>
-    <% end %>
-
-  </div>
-  <div class="form-group">
-    <%= f.label "الحي او المنطقة" %><br><%= collection_select(:agent, :region, Region.all, :name, :name, {},{:multiple =>false}) %>
-  </div>
-  <div class="form-group">
-    <%= f.label "المجاورة أو الناحية" %><br><%= collection_select(:agent, :neighbour, Neighbour.all, :name, :name, {},{:multiple =>false}) %>
-  </div>
-  <div class="form-group">
-    <%= f.label "الشارع" %><%= f.text_field :street,:class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "العنوان" %><%= f.text_field :address,:class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "النشاط" %><br><%= collection_select(:agent, :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false})  %>
-  </div>
-  <div class="form-group">
-    <%= f.label "مختصر عن النشاط" %><br><%= f.text_area :brief_of_activity %>
-  </div>
-  <fieldset>
-  <legend>كلمات البحث :</legend>
-  <div class="form-group">
-    <%= f.label "كلمة بحث" %><%= f.text_field :word1,:class => "form-control" %>
-   </div>
-   <div class="form-group">  
-    <%= f.label  "كلمة بحث" %><%= f.text_field :word2,:class => "form-control" %>
-   </div>
-  <div class="form-group"> 
-    <%= f.label "كلمة بحث" %><%= f.text_field :word3,:class => "form-control" %>
-  </div>
-  <div class="form-group"> 
-    <%= f.label  "كلمة بحث" %><%= f.text_field :word4,:class => "form-control" %>
-  </div>
-  <div class="form-group"> 
-    <%= f.label "كلمة بحث" %><%= f.text_field :word5,:class => "form-control" %>
-  </div> 
-
- </fieldset>
-  
-     </div>
-
+        <div class="form-group">
+          <%= f.label "موقع نت" %><%= f.text_field :website1, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "موقع نت" %><%= f.text_field :website2, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "ارغب في الإعلان مستقبلاً" %>
+          <%= f.check_box :can_announce, :class => "form-control" %>
+        </div>
+        <%= show_simple_captcha(:object=>"agent") %>
+<!--         <br>
+ -->        <div class="form-group">
+        <div class="actions">
+        </div>
+          <%= f.submit "تسجيل", :class => "btn btn-success btn-lg" %>
+        </div>
     </div>
-  </div>
+     </div>
+
 <% end %>
