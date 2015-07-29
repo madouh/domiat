@@ -138,7 +138,7 @@ $(function(){
 
 $(document).on('click','.ui-autocomplete .ui-menu-item',function(event,ui){
 
-alert($(this).text());
+//alert($(this).text());
     $.ajax({
 	 beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 
