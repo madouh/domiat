@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-form{
+/*form{
 	width:200px;
 	margin-right:50px;
-}
+}*/
 form *{
-	font-size:16px;
+	/*font-size:16px;*/
 }
 #agent_twenty_four, #agent_can_announce{
 	width:30px;
@@ -23,6 +23,7 @@ h1{
 	margin-right:50px;
 
 }
+
 fieldset{
   	padding-right: 38px;
   	width: 300px;
@@ -39,4 +40,22 @@ legend{
 	height:50px;
 
 }
+table th{
+	width:auto;
+	text-align: center;
+	white-space: nowrap;
 
+}
+table td{
+	
+	white-space: nowrap;
+
+}
+
+#agent_day_off_chosen > ul > li{
+	float:right;
+}
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > strong > a{
+	
+	font-size: 15px;
+}

@@ -9,6 +9,11 @@ gem 'aws-sdk'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'thin'
+#gem 'will_paginate'
+gem 'kaminari'
+#gem "jquery-rails", "~> 2.3.0"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"
@@ -21,7 +26,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'twilio-ruby'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.4'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

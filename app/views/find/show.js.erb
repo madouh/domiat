@@ -1,0 +1,6 @@
+// //alert("Hello from show.js.erb");
+// $("#result").html("<%=j render 'data' %>");
+// var url = "/find/testing";    
+// $(location).attr('href',url);
+var target='<%= raw @clean_params %>'
+window.location.replace("/find/show?search="+ target);

@@ -1,0 +1,47 @@
+<% unless @auto.blank? %>
+	<h3>نتائج البحث</h3>
+
+	<table class="table table-hover" border="2">
+  <thead>
+    <tr>
+      <th>الاسم</th>
+      <th>الحي أو المنطقة</th>
+      <th>المجاورة</th>
+      <th>النشاط</th>
+      <th>أيام العطلة</th>
+      <th>24 ساعة</th>
+      <th>تليفون</th>
+      <th>تليفون</th>
+      <th>تليفون</th>
+      <th>بداية العمل</th>
+      <th>نهاية العمل</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auto.each do |agent| %>
+      <tr>
+        <td><%= link_to truncate(agent.name, :length => 20), agent %></td>
+        <td><%= truncate(agent.region, :length => 20) %></td>
+        <td><%= truncate(agent.neighbour, :length => 20) %></td>
+        <td><%= truncate(agent.activity, :length => 20) %></td>
+        <td><%= agent.day_off.drop(1) %></td>
+        <td>
+          <% if agent.twenty_four %>
+          <strong>نعم</strong>
+          <% else %>
+          <strong>لا</strong>
+          <% end %>
+        </td>
+        <td><%= truncate(agent.tel1, :length => 15) %></td>
+        <td><%= truncate(agent.tel2, :length => 15) %></td>
+        <td><%= truncate(agent.tel3, :length => 15) %></td>
+        <td><%= (agent.start).strftime("%I:%M %P") %></td>
+        <td><%= (agent.end).strftime("%I:%M %P") %></td>
+                        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

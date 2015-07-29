@@ -3,14 +3,15 @@ class AgentsController < ApplicationController
       include AgentsHelper
       include SimpleCaptcha::ControllerHelpers
   before_filter :authenticate_user!, except: [ :show ]
-  before_action :i_am_admin , only: [:toggle, :edit, :update, :destroy]
-  before_action :set_agent, only: [:toggle, :show, :edit, :update, :destroy]
+     #the arrange or the dependency of i_am_admin_or_owner on set_agent is important.
+  before_action :set_agent, only: [:i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
+  before_action :i_am_admin_or_owner , only: [ :edit, :update, :destroy]
 
   # GET /agents
   # GET /agents.json
   def index
-    if current_user.is_admin?
-    @agents = Agent.all
+    if current_user.is_admin? 
+    @agents = Agent.all.order(:name)
     else
       redirect_to :root 
     end
@@ -23,15 +24,20 @@ class AgentsController < ApplicationController
       #            secret_access_key: ENV['S3_SECRET_ACCESS_KEY'] )
 
       # S3_BUCKET = AWS::S3.new.buckets[ENV'S3_BUCKET']
-
-    
   end
 
   # GET /agents/new
   def new
     @agent = Agent.new
   end
-
+  def waited
+    
+    if current_user.is_admin? 
+    @agents = Agent.where(:ok => false).order(:created_at)
+    else
+      redirect_to :root 
+    end
+  end
   # GET /agents/1/edit
   def edit
   end
@@ -62,8 +68,8 @@ class AgentsController < ApplicationController
   # PATCH/PUT /agents/1.json
   def update
     respond_to do |format|
-      if @agent.update(agent_params)
-        format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
+      if (@agent.update(agent_params) and @agent.update(:ok => false))
+        format.html { redirect_to @agent, notice: 'تم التعديل بنجاح و ستم انتظار المراجة في أقرب وقت ممكن.' }
         format.json { render :show, status: :ok, location: @agent }
       else
         format.html { render :edit }
@@ -84,21 +90,20 @@ class AgentsController < ApplicationController
   #verify action is to mark the "ok" field in the agents table to true to be showon in searching.
   # verify is a member of agents route- get agents/:id/verify.
   def toggle
-    if @agent.ok 
-     @agent.update(:ok => false)
-    flash[:notice] = "The agent is waited"
-  else
-    @agent.update(:ok => true)
-    flash[:notice] = "The agent is verified, ThanX  "
+    puts "from waited ========/////////////////////////////////////================="
+    puts params.inspect
+    puts "========================="
+    if current_user.is_admin? 
+          if @agent.ok 
+               @agent.update(:ok => false)
+               flash[:notice] = "The agent is waited"
+          else
+              @agent.update(:ok => true)
+              flash[:notice] = "The agent is verified, ThanX  "
+          end
+        redirect_to :agents_waited
+    end
   end
-    redirect_to agents_path
-  end
-
-  #search action is to search through the verified agents aboute certain query
-  def search
-
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -106,17 +111,20 @@ class AgentsController < ApplicationController
       @agent = Agent.find(params[:id])
     end
 # verify if the current user is admin , if not, redirect_to the root path
-    def i_am_admin
-      unless current_user.is_admin?
+    def i_am_admin_or_owner
+      unless ((current_user.is_admin?) or (@agent.email==current_user.email))
         redirect_to :root    
         flash[:error] = "You haven't the rights to access the required page."
      
        end
     end
+    def i_am_admin
+      current_user.is_admin?
+
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def agent_params
       params[:agent][:day_off] ||= []
-
       params.require(:agent).permit(:name, :region, :neighbour, :street, :address, :activity, :brief_of_activity, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key, day_off: [])
     end
 end

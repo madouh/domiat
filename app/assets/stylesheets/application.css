@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require jquery-ui/autocomplete
  *= require bootstrap.min
  *= require bootstrap-theme.min
  *= require_self
@@ -17,157 +18,71 @@
  *= require_tree .
  */
 
-@font-face {
+
+#the_top_of_the_page{
+  margin-top: 30px;
+}
+
+body > nav.pagination > span {
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+
+
+.ui-autocomplete { height: 100px; overflow-y: scroll; overflow-x: hidden;}
+
+body > nav{
+  z-index: 1;
+}
+/*@font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../assets/glyphicons-halflings-regular.eot');
   src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
        url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
        url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}*/
+
+#search_key{
+  display: none;
 }
 
-ul.pureCssMenu ul{display:none}
-ul.pureCssMenu li:hover>ul{display:block}
-ul.pureCssMenu ul{position: absolute;right:-1px;top:98%;}
-ul.pureCssMenu ul ul{position: absolute;right:98%;top:-2px;}
-ul.pureCssMenu,ul.pureCssMenu ul {
-	margin:0px;
-	list-style:none;
-	padding:0px 2px 2px 0px;
-	background-color:#333333;
-	background-repeat:repeat;
-	border-color:#cccccc #111111 #111111 #cccccc;
-	border-width:1px;
-	border-style:solid;
+body{
+    /*background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');*/
+    padding:5px;
+    /*margin-top:30px;*/
 }
-ul.pureCssMenu table {border-collapse:collapse}ul.pureCssMenu {
-	display:block;
-	zoom:1;
-	float: right;
-}
-ul.pureCssMenu ul{
-	width:112.10000000000002px;
-}
-ul.pureCssMenu li{
-	display:block;
-	margin:2px 0px 0px 2px;
-	font-size:0px;
-}
-ul.pureCssMenu a:active, ul.pureCssMenu a:focus {
-outline-style:none;
-}
-ul.pureCssMenu a, ul.pureCssMenu li.dis a:hover, ul.pureCssMenu li.sep a:hover {
-	display:block;
-	vertical-align:middle;
-	background-color:#333333;
-	border-width:1px;
-	border-color:#333333;
-	border-style:solid;
-	text-align:right;
-	text-decoration:none;
-	padding:2px 5px 2px 10px;
-	_padding-right:0;
-	font:15px Trebuchet MS;
-	color: #cccccc;
-	text-decoration:none;
-	cursor:default;
-}
-ul.pureCssMenu span{
-	overflow:hidden;
-}
-ul.pureCssMenu li {
-	float:right;
-}
-ul.pureCssMenu ul li {
-	float:none;
-}
-ul.pureCssMenu ul a {
-	text-align:right;
-	white-space:nowrap;
-}
-ul.pureCssMenu li.sep{
-	text-align:right;
-	padding:0px;
-	line-height:0;
-	height:100%;
-}
-ul.pureCssMenu li.sep span{
-	float:none;	padding-right:0;
-	width:3px;
-	height:100%;
-	display:inline-block;
-	background-color:#cccccc #111111 #111111 #cccccc;	background-image:none;}
-ul.pureCssMenu ul li.sep span{
-	width:100%;
-	height:3px;
-}
-ul.pureCssMenu li:hover{
-	position:relative;
-}
-ul.pureCssMenu li:hover>a{
-	background-color:#377D9F;
-	border-color:#377D9F;
-	border-style:solid;
-	font:15px Trebuchet MS;
-	color: #FFFFFF;
-	text-decoration:none;
-}
-ul.pureCssMenu li a:hover{
-	position:relative;
-	background-color:#377D9F;
-	border-color:#377D9F;
-	border-style:solid;
-	font:15px Trebuchet MS;
-	color: #FFFFFF;
-	text-decoration:none;
-}
-ul.pureCssMenu li.dis a {
-	color: #666 !important;
-}
-ul.pureCssMenu img {border: none;float:right;_float:none;margin-right:2px;width:16px;
-height:16px;
-}
-ul.pureCssMenu ul img {width:16px;
-height:16px;
-}
-ul.pureCssMenu img.over{display:none}
-ul.pureCssMenu li.dis a:hover img.over{display:none !important}
-ul.pureCssMenu li.dis a:hover img.def {display:inline !important}
-ul.pureCssMenu li:hover > a img.def  {display:none}
-ul.pureCssMenu li:hover > a img.over {display:inline}
-ul.pureCssMenu a:hover img.over,ul.pureCssMenu a:hover ul img.def,ul.pureCssMenu a:hover a:hover ul img.def,ul.pureCssMenu a:hover a:hover a:hover ul img.def,ul.pureCssMenu a:hover a:hover img.over,ul.pureCssMenu a:hover a:hover a:hover img.over,ul.pureCssMenu a:hover a:hover a:hover a:hover img.over{display:inline}
-ul.pureCssMenu a:hover img.def,ul.pureCssMenu a:hover ul img.over,ul.pureCssMenu a:hover a:hover ul img.over,ul.pureCssMenu a:hover a:hover a:hover ul img.over,ul.pureCssMenu a:hover a:hover img.def,ul.pureCssMenu a:hover a:hover a:hover img.def,ul.pureCssMenu a:hover a:hover a:hover a:hover img.def{display:none}
-ul.pureCssMenu a:hover ul,ul.pureCssMenu a:hover a:hover ul,ul.pureCssMenu a:hover a:hover a:hover ul{display:block}
-ul.pureCssMenu a:hover ul ul,ul.pureCssMenu a:hover a:hover ul ul{display:none}
-ul.pureCssMenu span{
-	display:block;
-	background-image:url(arr_white.png);
-	background-position:left center;
-	background-repeat: no-repeat;
-   padding-right:10px;}
-ul.pureCssMenu li:hover>a>span{	background-image:url(arrv_white.gif);
-}
-ul.pureCssMenu a:hover span{	_background-image:url(arrv_white.gif)}
-ul.pureCssMenu ul span,ul.pureCssMenu a:hover table span{background-image:url(arr_white.png)}
-ul.pureCssMenu{
- top:0;
-  width:100%;
- float: right;
- //border:none;
- margin-bottom: 25px;
-  }
-  body{
-  	margin:1px;
-  }
-  body > ul > li > a > span{
-  	padding-left: 10px;
+
+/*#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > strong > a{margin: 10px;}*/
+
+body > ul > li > a > span{
+    padding-left: 5px;
   }
 
-table th{
-	width:auto;
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > strong:nth-child(2) > a:hover{
+  text-decoration: none; /*deleting hover underline for خروج in the navbar*/
 }
-#error{
-	font-size: 30px;
+
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > strong:nth-child(1) > a:hover{
+  text-decoration: none; /*deleting hover underline for دخول in the navbar*/
+}
+
+.navbar-right{
+	  margin-top: 16px;
+  	font-size: 13px;
+}
+
+
+#bs-example-navbar-collapse-1 > ul > li{/*margin-left: -10px*/}
+/*body > .navbar{
+    width: 99%;
+    position: fixed;
+    top:0;
+  }*/
+
+/*#error{
+	font-size: 20px;
 	color:red;
 	background-color: pink;
 	border:2px solid black;
@@ -175,15 +90,12 @@ table th{
 	text-align: center;
 
 }
+
 #notice{
-	font-size: 30px;
+	font-size: 20px;
 	color:green;
 	background-color: yellow;
 	border:2px solid black;
 	padding-bottom: 20px;
 	text-align: center;
-
-}
-#agent_day_off_chosen > ul > li{
-	float:right;
-}
+}*/

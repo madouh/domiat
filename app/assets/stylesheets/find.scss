@@ -1,0 +1,35 @@
+// Place all the styles related to the find controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.hide_in_tablet {
+  @media(max-width: 922px){
+    display: none;
+  }
+}
+.hide_in_phone {
+  @media(max-width: 768px){
+    display: none;
+  }
+}
+#the_top_of_the_page{
+	@media only screen and(max-width: 768px){
+    margin-top: 30px;
+  	}
+  	@media only screen and(max-width: 1250px)and(min-width: 767px){
+    margin-top: 30px;
+  	}
+	
+}
+/*دخول و خروج يكون لونها ابيض على التب و الموبايل*/
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > strong >a {
+  @media(max-width: 768px){
+    color: white;
+  }
+}
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li  {
+  @media(min-width: 768px){
+    padding-left: 20px;
+  }
+}
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li:nth-child(3) > strong:nth-child(1){    color: white;
+}

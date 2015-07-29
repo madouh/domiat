@@ -69,8 +69,14 @@ class ActivitiesController < ApplicationController
     def set_activity
       @activity = Activity.find(params[:id])
     end
-    # verify if the current user is admin , if not, redirect_to the root path
-   
+   # verify if the current user is admin , if not, redirect_to the root path
+    def i_am_admin
+      unless current_user.is_admin?
+        redirect_to :root    
+        flash[:error] = "You haven't the rights to access the required page."
+     
+       end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
       params.require(:activity).permit(:name)

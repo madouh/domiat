@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'find/search'
+  get 'find/show'
+  get 'agents/waited'
+
   devise_for :users #, :controllers => {:registerations=> "registerations"}
   resources :agents do
        member do
