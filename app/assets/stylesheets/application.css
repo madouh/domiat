@@ -81,11 +81,10 @@ body > ul > li > a > span{
     top:0;
   }*/
 
-/*#error{
+#error{
 	font-size: 20px;
 	color:red;
-	background-color: pink;
-	border:2px solid black;
+  font-weight: bold;
 	padding-bottom: 20px;
 	text-align: center;
 
@@ -93,9 +92,6 @@ body > ul > li > a > span{
 
 #notice{
 	font-size: 20px;
-	color:green;
-	background-color: yellow;
-	border:2px solid black;
 	padding-bottom: 20px;
 	text-align: center;
-}*/
+}

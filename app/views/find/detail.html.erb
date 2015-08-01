@@ -1,0 +1,43 @@
+<h1>بحث متقدم:</h1>
+<div class="container">
+    <div class="row">
+<%= form_tag find_advanced_path, method:"get" do  %>
+  
+     <div class="col-md-6" id="make_it_right" >
+     	<div class="form-group">
+        <%= label_tag "الإسم" %><%= text_field_tag :name ,'',:class =>"form-control", :style =>"width:250px;" %>
+        </div>
+        <div class="form-group">
+        <%= label_tag "الحي او المنطقة" %><br><%= collection_select("", :region, Region.all, :name, :name, {:prompt => "اختر الحي أو المنطقة"},{:multiple =>false,:class => "form-control", :style =>"width:250px;"}) %>
+        </div>
+        <div class="form-group">
+        <%= label_tag "المجاورة أو الناحية" %><br><%= collection_select("", :neighbour, Neighbour.all, :name, :name, {:prompt => "اختر المجاورة أو الناحية"},{:multiple =>false,:class => "form-control" , :style =>"width:250px;"}) %>
+        </div>
+        <div class="form-group">
+        <%= label_tag "الشارع" %><%= text_field_tag :street ,'',:class =>"form-control", :style =>"width:250px;" %>
+        </div>
+     </div>
+
+     <div class="col-md-6" >
+     	<div class="form-group">
+        <%= label_tag "النشاط" %><br><%= collection_select("", :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false,:class => "form-control" , :style =>"width:250px;"})  %>
+      </div>
+      
+        <div class="form-group"> 
+        <%= label_tag "كلمة بحث" %><%= text_field_tag :word ,'',:class =>"form-control", :style =>"width:250px;" %>
+      </div> 
+        <div class="form-group" >
+          <%= label_tag "العمل 24 ساعة يومياً" %>
+         
+ 			<%= check_box_tag :twenty_four , "", checked = 'true', {:class => "form-control",:style=>"width:30px;"} %>
+        </div> 
+        <div class="form-group">
+        <div class="actions">
+        
+          <%= submit_tag "بحث", :class => "btn btn-success btn-lg" %>
+        </div>
+        </div>
+     </div>
+     </div>
+
+<% end %>
