@@ -1,4 +1,4 @@
-<h1>بحث متقدم:</h1>
+<h1>بحث مفصَّل:</h1>
 <div class="container">
     <div class="row">
 <%= form_tag find_advanced_path, method:"get" do  %>
@@ -29,7 +29,7 @@
         <div class="form-group" >
           <%= label_tag "العمل 24 ساعة يومياً" %>
          
- 			<%= check_box_tag :twenty_four , "", checked = 'true', {:class => "form-control",:style=>"width:30px;"} %>
+ 			<%= check_box_tag :twenty_four , "", checked = false, {:class => "form-control",:style=>"width:30px;"} %>
         </div> 
         <div class="form-group">
         <div class="actions">

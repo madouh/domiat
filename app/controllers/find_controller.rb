@@ -6,7 +6,6 @@ class FindController < ApplicationController
   def search
   	@clean_params=(params[:search]).gsub(/\s+/, ' ')
   	query="%" + @clean_params + "%"
-  	@result=@verified_agent.where('name=?',@clean_params)
   	@auto=[]
   	@auto.concat(@verified_agent.where('name LIKE ?', query).limit(5).pluck(:name))
   	@auto.concat(@verified_agent.where('activity LIKE ?', query).limit(5).pluck(:activity))
@@ -119,7 +118,7 @@ class FindController < ApplicationController
   def test_if_more_than_one
      n=0
     params.each do |key,value|
-        if key.in?(['name','region','neighbour','street','activity','word','twenty_four'])
+        if key.in?(['name','region','neighbour','street','activity','word'])
             if !value.blank?
               puts key
               puts value
