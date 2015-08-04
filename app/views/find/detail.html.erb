@@ -51,15 +51,29 @@
   top: 57px;
   left: 5px;">
 <h3 style="text-align:center; color:goldenrod;">أنشطة مقترحة عشوائياً</h3><br>
+<% div_colors=["alert-primary","alert-success","alert-info","alert-warning","alert-danger"] %>
 
-
+<% i=0 %>
 <% @result.each do |result| %>
-<div class="alert alert-primary" role="alert" style="background-color:lightgrey;">
+<div class="alert <%= div_colors[i] %>" role="alert" style="background-color:lightgrey;">
   <b><%= link_to result.name, result %></b>
   <br>
   <code><%= result.activity %></code>
   <br>
   <i><%= result.brief_of_activity %>.</i>
 </div>
+<% i=i+1 %>
 <% end %>
+</div>
+
+
+
+  <!-- <div class="alert alert-primary" role="alert" style="background-color:#00CCFF;">
+  <a href="#" class="alert-link"><b>هايبر المدينة</b></a>
+  <br>
+  <code>هايبر و سوبر ماركت </code>
+  <br>
+  <i>كل ما يحتاجة البيت الحديث من مستلزمات.</i>
+</div> -->
+
 </div>
