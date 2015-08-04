@@ -29,7 +29,7 @@ class FindController < ApplicationController
   end
 
    def detail
-    @result=@verified_agent.select(:id,:name,:activity,:brief_of_activity).limit(7).order("RANDOM()")
+    @result=@verified_agent.select(:id,:name,:activity,:brief_of_activity).limit(6).order("RANDOM()")
    #   redirect_to :controller=>'find', :action=>'show', :search => params[:search]
     end
 
