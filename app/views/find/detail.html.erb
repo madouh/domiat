@@ -4,40 +4,62 @@
 <%= form_tag find_advanced_path, method:"get" do  %>
   
      <div class="col-md-6" id="make_it_right" >
+      <div class="form-group">
+        <%= label_tag "النشاط" %><br><%= collection_select("", :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false,:class => "form-control ", :id=>"activity_select" , :style =>"width:250px;"})  %>
+      </div>
      	<div class="form-group">
-        <%= label_tag "الإسم" %><%= text_field_tag :name ,'',:class =>"form-control", :style =>"width:250px;" %>
+        <%= label_tag "الإسم" %><%= text_field_tag :name ,'',:class =>"form-control active_after_activity", :style =>"width:250px;", disabled:true %>
         </div>
         <div class="form-group">
-        <%= label_tag "الحي او المنطقة" %><br><%= collection_select("", :region, Region.all, :name, :name, {:prompt => "اختر الحي أو المنطقة"},{:multiple =>false,:class => "form-control", :style =>"width:250px;"}) %>
+        <%= label_tag "الحي او المنطقة" %><br><%= collection_select("", :region, Region.all, :name, :name, {:prompt => "اختر الحي أو المنطقة"},{:multiple =>false,:class => "form-control active_after_activity", :style =>"width:250px;", disabled:true}) %>
         </div>
         <div class="form-group">
-        <%= label_tag "المجاورة أو الناحية" %><br><%= collection_select("", :neighbour, Neighbour.all, :name, :name, {:prompt => "اختر المجاورة أو الناحية"},{:multiple =>false,:class => "form-control" , :style =>"width:250px;"}) %>
+        <%= label_tag "المجاورة أو الناحية" %><br><%= collection_select("", :neighbour, Neighbour.all, :name, :name, {:prompt => "اختر المجاورة أو الناحية"},{:multiple =>false,:class => "form-control active_after_activity" , :style =>"width:250px;", disabled:true}) %>
         </div>
-        <div class="form-group">
-        <%= label_tag "الشارع" %><%= text_field_tag :street ,'',:class =>"form-control", :style =>"width:250px;" %>
-        </div>
+        
      </div>
 
      <div class="col-md-6" >
-     	<div class="form-group">
-        <%= label_tag "النشاط" %><br><%= collection_select("", :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false,:class => "form-control" , :style =>"width:250px;"})  %>
-      </div>
-      
+     	
+      <div class="form-group">
+        <%= label_tag "الشارع" %><%= text_field_tag :street ,'',:class =>"form-control active_after_activity", :style =>"width:250px;", disabled:true %>
+        </div>
+
         <div class="form-group"> 
-        <%= label_tag "كلمة بحث" %><%= text_field_tag :word ,'',:class =>"form-control", :style =>"width:250px;" %>
+        <%= label_tag "كلمة بحث" %><%= text_field_tag :word ,'',:class =>"form-control active_after_activity", :style =>"width:250px;" , disabled:true %>
       </div> 
         <div class="form-group" >
           <%= label_tag "العمل 24 ساعة يومياً" %>
          
- 			<%= check_box_tag :twenty_four , "", checked = false, {:class => "form-control",:style=>"width:30px;"} %>
+ 			<%= check_box_tag :twenty_four , "", checked = false, {:class => "form-control active_after_activity",:style=>"width:30px;", disabled:true} %>
         </div> 
         <div class="form-group">
         <div class="actions">
         
-          <%= submit_tag "بحث", :class => "btn btn-success btn-lg" %>
+          <%= submit_tag "بحث", :class => "btn btn-success btn-lg  active_after_activity", disabled:true %>
         </div>
         </div>
      </div>
      </div>
 
 <% end %>
+     </div>
+     </div>
+    <div id="side_ads" style="  position: absolute;
+  width: 21%;
+  background-color:rgb(32,0,0) ;
+  top: 57px;
+  left: 5px;">
+<h3 style="text-align:center; color:goldenrod;">أنشطة مقترحة عشوائياً</h3><br>
+
+
+<% @result.each do |result| %>
+<div class="alert alert-primary" role="alert" style="background-color:lightgrey;">
+  <a href="#" class="alert-link"><b><%= result.name %></b></a>
+  <br>
+  <code><%= result.activity %></code>
+  <br>
+  <i><%= result.brief_of_activity %>.</i>
+</div>
+<% end %>
+</div>

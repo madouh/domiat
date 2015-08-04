@@ -1,0 +1,17 @@
+
+var income_results="<%= raw @result.length %>"
+if ( income_results != 0) {
+	var counter=0
+	<% @result.each do |result| %> 
+		
+		 $("div.alert:eq("+counter+")").show();
+		 $("div.alert>a:eq(" + counter + ")").replaceWith("<%= j link_to result.name, result %>");
+		 $("div.alert>i:eq(" + counter + ")").text("<%= raw result.brief_of_activity %>");
+		 $("div.alert>code:eq(" + counter + ")").text("<%= raw result.activity %>");
+			counter+=1
+	<% end %>
+
+	for(k=counter; k<=5;k++){
+		 $("div.alert:eq("+k+")").hide();
+	}
+} //if

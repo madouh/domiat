@@ -29,6 +29,8 @@ class FindController < ApplicationController
   end
 
    def detail
+    @result=@verified_agent.select(:id,:name,:activity,:brief_of_activity).limit(5).order("RANDOM()")
+
    #   redirect_to :controller=>'find', :action=>'show', :search => params[:search]
     end
 
@@ -78,35 +80,34 @@ class FindController < ApplicationController
             length_of_array=values.length
             case length_of_array
             when 1
-              @result= @verified_agent.where(where_first_clause,values[0])
-              puts "one"
+              @result= @verified_agent.where(where_first_clause,values[0]).page params[:page]
             when 2
-              @result= @verified_agent.where(where_first_clause,values[0],values[1])
-              puts "two"
+              @result= @verified_agent.where(where_first_clause,values[0],values[1]).page params[:page]
             when 3
-              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2])
-              puts "three"
+              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2]).page params[:page]
             when 4
-              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3])
-              puts "four"
+              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3]).page params[:page]
             when 5
-              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3],values[4])
-              puts 'five'
+              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3],values[4]).page params[:page]
             when 6
-              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3],values[4],values[5])
-              puts "six"
+              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3],values[4],values[5]).page params[:page]
             when 7
-              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3],values[4],values[5],values[6])
-              puts "seven"
+              @result= @verified_agent.where(where_first_clause,values[0],values[1],values[2],values[3],values[4],values[5],values[6]).page params[:page]
             end # of case 
           
     if !params[:word].blank?
-    @result=@result.where('word1=? OR word2=? OR word3=? OR word4=? OR word5=?',params[:word],params[:word],params[:word],params[:word],params[:word]) #.page params[:page]
+    @result=@result.where('word1=? OR word2=? OR word3=? OR word4=? OR word5=?',params[:word],params[:word],params[:word],params[:word],params[:word]).page params[:page]
     end
 
     @result.uniq!
   end # end of advanced
 
+  def ads
+      sent_activity=params[:activity]
+      @result=@verified_agent.select(:id,:name,:activity,:brief_of_activity).where('activity=? ',sent_activity).limit(5).order("RANDOM()")
+        
+
+  end
 
   private
 
@@ -131,8 +132,8 @@ class FindController < ApplicationController
       n=n+1
     end
 
-    if n<3
-       flash[:error] = "يجب إختيار ثلاثة أو أكثر من تفاصيل البحث."
+    if n<2
+       flash[:error] = "يجب إختيار اثنين أو أكثر من تفاصيل البحث."
         redirect_to :find_detail
     end
 

@@ -18,6 +18,9 @@
 //= require turbolinks
 //= require_tree .
 
+
+
+
 window.setTimeout(function() { $('#search').keyup();}, 1000);
 
 
@@ -150,7 +153,28 @@ $(document).on('click','.ui-autocomplete .ui-menu-item',function(event,ui){
 											    });
 });
 
+// $(function(){
+// 			$('#activity_select').click(function(){
 
+$(document).on('click','#activity_select',function(event,ui){
+		if ($('#activity_select').val() != "") {
+			$('.active_after_activity').attr( "disabled", false );
+$.ajax({
+	 beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+
+											        type: 'GET', 
+											        url: '/find/ads' , 
+											        dataType: 'script',
+											        data: { activity: $('#activity_select').val() }
+
+											    });
+				}
+			else {
+			$('.active_after_activity').attr( "disabled", true );
+
+			}
+								});
+						// });
 // $(function() {
 //  $("#search").autocomplete({select: function(event,ui) { 
 
