@@ -55,7 +55,7 @@
 
 <% @result.each do |result| %>
 <div class="alert alert-primary" role="alert" style="background-color:lightgrey;">
-  <a href="#" class="alert-link"><b><%= result.name %></b></a>
+  <b><%= link_to result.name, result %></b>
   <br>
   <code><%= result.activity %></code>
   <br>
