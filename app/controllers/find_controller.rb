@@ -103,9 +103,14 @@ class FindController < ApplicationController
   end # end of advanced
 
   def ads
+      #ids = @verified_agent.pluck(:id).shuffle[0..4]
+      #User.where(id: ids)
       sent_activity=params[:activity]
-      @result=@verified_agent.select(:id,:name,:activity,:brief_of_activity).where('activity=? ',sent_activity).limit(5).order("RANDOM()")
-        
+      @result=@verified_agent.where('activity=? ',sent_activity).limit(5) #.order("RANDOM()")
+      puts "from ads ============================================"
+      puts @result.inspect
+      puts "from ads ============================================"
+
 
   end
 
