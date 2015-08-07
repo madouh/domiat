@@ -6,6 +6,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet' />
 </head>
 <body>
 
@@ -50,7 +52,8 @@
       <div class="form-group">
       <%= text_field_tag :search, '',size:30, :class => "form-control", :placeholder =>"اكتب كلمة البحث هنا" , :autocomplete => :off %>
       </div>
-     
+
+      <%= text_field_tag :corruption,"", :style =>"display:none" %>
       <%= submit_tag 'بحث', :class => "btn brn-default" , :id => 'search_key', :style => 'visibility:hidden' %>
 
       <% end %>

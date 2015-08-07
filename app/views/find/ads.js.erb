@@ -1,21 +1,18 @@
 $("div.alert").fadeOut(500);
+$("div.alert").removeClass("now");
 var income_results="<%= raw @result.length %>"
 if ( income_results != 0) {
-
 	var counter=0
 	<% @result.each do |result| %> 
-		//$("<%= j link_to result.name, result %>").appendTo($("div.alert>a:eq(" + counter + ")"))
-
-		 // $("div.alert:eq("+counter+")").show();
-		 $("div.alert:eq("+counter+")").fadeIn(1000);
-		 $("div.alert:eq("+counter+")").css("height","90px");
-		 // $(".side_ads").css("height",(1000).toString()+"px")
+		 // $("div.alert:eq("+counter+")").css("height","90px");
 		 $("div.alert>b>a:eq(" + counter + ")").replaceWith("<%= j link_to result.name, result %>");
 		 $("div.alert>i:eq(" + counter + ")").text("<%= raw result.brief_of_activity %>");
 		 $("div.alert>code:eq(" + counter + ")").text("<%= raw result.activity %>");
+		 $("div.alert:eq(" + counter + ")").addClass("now");
 			counter+=1
 	<% end %>
 
+		 $("div.alert>code:eq(0)").trigger("change");
 	// for(k=counter; k<=5;k++){
 	// 	  // $("div.alert:eq("+k+")").css("height","0px");
 	// 	  $("div.alert:eq("+k+")").fadeOut(500);

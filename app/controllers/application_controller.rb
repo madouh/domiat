@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  #before_filter :corrupt
   protect_from_forgery with: :exception
 
 
@@ -12,5 +13,14 @@ class ApplicationController < ActionController::Base
             devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password) }
             devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
         end
+    #     def corrupt
+	   #  c=(0..120).to_a
+	   #  aa=c.to_s
+	   #  puts "from corrupt======================="
+	   #  puts c.join('')
+	   #  puts "from corrupt======================="
+	   #  @corrupt = c.join('')
+	  	# end
+
 
 end

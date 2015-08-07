@@ -17,9 +17,16 @@
 //= require bootstrap.min
 //= require turbolinks
 //= require_tree .
-
-
-
+// var map = new google.maps.Map(document.getElementById('map'), {
+//     center: new google.maps.LatLng(40.718217,-73.998284),
+//     zoom: 13,
+//     mapTypeId: google.maps.MapTypeId.ROADMAP
+// });
+$(document).ready(function() {
+      L.mapbox.accessToken = 'pk.eyJ1IjoibWFkb3VoIiwiYSI6ImE0MDU0OWFhZjZmYjY1NDMwYmY4NTE3NzkyNDE1ZDFmIn0.-ECw3qHWXfcdWp4yCu1oLQ';
+      var map = L.mapbox.map('map', 'mapbox.streets-satellite')
+      .setView([31.442585, 31.677682], 15);
+      });
 
 window.setTimeout(function() { $('#search').keyup();}, 1000);
 
@@ -127,6 +134,22 @@ $(function(){
 												});
 			});
 
+ // fading the alert div in detail view and then fade it In 
+ // and doing this again on clicking on advanced search link
+
+ $(document).on('click',"#bs-example-navbar-collapse-1 > ul:nth-child(1) > li.active > a",function(){
+// alert("from advanced");
+		 $("div.alert>code:eq(0)").trigger("change");
+
+ });
+
+$(document).on('change',"div.alert>code:eq(0)",function(){
+	// alert("from change");
+$("div.alert").fadeOut(500);
+$("div.alert").fadeIn(1500);
+});
+
+
 
 // $("#back_key").click(function(){
 // 	//alert("the button clicked.");
@@ -134,6 +157,7 @@ $(function(){
 //  });
 // });
 
+											    // });
 
 // $(function(){
 // $('#agent_day_off').chosen();
@@ -146,7 +170,7 @@ $(document).on('click','.ui-autocomplete .ui-menu-item',function(event,ui){
 	 beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
 
 											        type: 'GET', 
-											        url: '/find/show' , 
+											        url: '/find/corrupt' , 
 											        dataType: 'script',
 											        data: { search: $(this).text() }
 

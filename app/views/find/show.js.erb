@@ -2,5 +2,5 @@
 // $("#result").html("<%=j render 'data' %>");
 // var url = "/find/testing";    
 // $(location).attr('href',url);
-var target='<%= raw @clean_params %>'
+var target='<%= raw @encrypted_data %>'
 window.location.replace("/find/show?search="+ target);

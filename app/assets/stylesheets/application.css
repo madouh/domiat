@@ -17,7 +17,12 @@
  *= require chosen
  *= require_tree .
  */
-
+div#map {
+position: absolute;
+top: 0;
+bottom: 0;
+width: 100%;
+}
 
 #the_top_of_the_page{
   margin-top: 30px;

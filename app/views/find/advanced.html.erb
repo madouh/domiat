@@ -1,5 +1,59 @@
+
+
+<% unless @result.blank? %>
+	<h3>نتائج البحث</h3>
+
+	<table class="table table-hover table-striped" border="2">
+  <thead>
+    <tr>
+      <th>الاسم</th>
+      <th>النشاط</th>
+      <th class='hide_in_tablet hide_in_phone'>الحي أو المنطقة</th>
+      <th class='hide_in_tablet hide_in_phone'>المجاورة</th>
+      <th>أيام العطلة</th>
+      <th class='hide_in_phone'>24 ساعة</th>
+      <th>تليفون</th>
+      <th>تليفون</th>
+      <th class='hide_in_phone'>تليفون</th>
+      <th class='hide_in_tablet hide_in_phone'>بداية العمل</th>
+      <th class='hide_in_tablet hide_in_phone'>نهاية العمل</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @result.each do |agent| %>
+      <tr>
+        <td><%= link_to truncate(agent.name, :length => 20), agent %></td>
+        <td><%= truncate(agent.activity, :length => 20) %></td>
+        <td class='hide_in_tablet hide_in_phone'><%= truncate(agent.region, :length => 20) %></td>
+        <td class='hide_in_tablet hide_in_phone'><%= truncate(agent.neighbour, :length => 20) %></td>
+        
+        <td><%= agent.day_off.drop(1) %></td>
+        <td class='hide_in_phone'>
+          <% if agent.twenty_four %>
+          <strong>نعم</strong>
+          <% else %>
+          <strong>لا</strong>
+          <% end %>
+        </td>
+        <td><%= truncate(agent.tel1, :length => 15) %></td>
+        <td><%= truncate(agent.tel2, :length => 15) %></td>
+        <td class='hide_in_phone'><%= truncate(agent.tel3, :length => 15) %></td>
+        <td class='hide_in_tablet hide_in_phone'><%= (agent.start).strftime("%I:%M %P") %></td>
+        <td class='hide_in_tablet hide_in_phone'><%= (agent.end).strftime("%I:%M %P") %></td>
+                        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+<%= paginate @result %>
+
+
+<%= paginate @result %>
+<!--
 <% @result.each do |result| %>
 <%= result.inspect %>
 <hr>
 <% end %>
-<%= paginate @result %>

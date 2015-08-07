@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'find/show'
   get 'find/detail'
   get 'find/advanced'
+  get 'find/corrupt'
   get 'find/ads'
   get 'agents/waited'
 

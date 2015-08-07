@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class FindController < ApplicationController
-    before_action :set_verified_agent 
+    before_action :set_verified_agent #, :corrupt 
     before_action :test_if_more_than_one  , only: [ :advanced ]
  
   def search
@@ -15,17 +15,48 @@ class FindController < ApplicationController
   	@auto.concat(@verified_agent.where('word4 LIKE ?', query).limit(5).pluck(:word4))
   	@auto.concat(@verified_agent.where('word5 LIKE ?', query).limit(5).pluck(:word5))
   	@auto.uniq!
-  end
+    # <% crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)%>
 
+    #   <% encrypted_data = crypt.encrypt_and_sign(:search) %>
+    #   <% decrypted_back = crypt.decrypt_and_verify(encrypted_data) %>
+    # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    
+  end
+  def corrupt
+    puts "from corrupt 00000000000000000000000000000000000"
+    puts params.inspect
+    puts "from corrupt 00000000000000000000000000000000000"
+
+    if params[:search] and (((params[:search]).gsub(/\s+/, '')).length>0)
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    @encrypted_data = crypt.encrypt_and_sign(params[:search])
+    puts params[:search]
+  else
+            redirect_to :root
+
+  end
+  end
   def show
-    if params[:search]
-      	@clean_params=(params[:search]).gsub(/\s+/, ' ')
+    puts "from show 00000000000000000000000000000000000"
+    puts params.inspect
+    puts "from show 00000000000000000000000000000000000"
+
+    if params[:search] and (((params[:search]).gsub(/\s+/, '')).length>0)
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
+    @clean_params = crypt.decrypt_and_verify(params[:search])
+
+      #decrypted_back = crypt.decrypt_and_verify(encrypted_data)
+      puts @clean_params
+      	@clean_params=@clean_params.gsub(/\s+/, ' ')
       	@result=@verified_agent.where('name=? OR activity=? OR word1=? OR word2=? OR word3=? OR word4=? OR word5=?',@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params).page params[:page]
         respond_to do |format|
             format.html 
             format.js 
         end
+      else
+        redirect_to :root
     end
+
   end
 
    def detail
@@ -110,6 +141,14 @@ class FindController < ApplicationController
   end
 
   private
+  # def corrupt
+  #   c=(0..120).to_a
+  #   aa=c.to_s
+  #   puts "from corrupt======================="
+  #   puts c.join('')
+  #   puts "from corrupt======================="
+  #   c.join('')
+  # end
 
   def set_verified_agent
   	  	@verified_agent=Agent.where('ok=?',true)

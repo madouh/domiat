@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+#google map api access token # pk.eyJ1IjoibWFkb3VoIiwiYSI6ImE0MDU0OWFhZjZmYjY1NDMwYmY4NTE3NzkyNDE1ZDFmIn0.-ECw3qHWXfcdWp4yCu1oLQ
 #gem 'backup'
 #gem 'clockwork'
 #gem "heroku_backup_task"
@@ -13,6 +13,7 @@ gem 'thin'
 #gem 'will_paginate'
 gem 'kaminari'
 #gem "jquery-rails", "~> 2.3.0"
+# gem 'mapbox-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
