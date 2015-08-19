@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'maps/showmap'
+
+  get 'maps/showroute'
+
   get 'find/search'
   get 'find/show'
   get 'find/detail'
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
   resources :agents do
        member do
          get 'toggle'
+         get 'showmap'
+         get 'showroute'
     end
   end
 

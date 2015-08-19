@@ -16,17 +16,13 @@
      <div class="col-md-6" id="make_it_right" >
 
         <div class="form-group" >
-          <% unless current_user.is_admin? %>
-          <%= f.label "الاسم" %><%= f.text_field :name ,:class => "form-control" , :value => current_user.username , :readonly => true %>
-          <% else %>
-          <%= f.label "الاسم" %><%= f.text_field :name ,:class => "form-control" , :value => @agent.name  %>
-          <% end %>
+          <%= f.label "اسم النشاط أو اسم صاحب النشاط" %><%= f.text_field :name ,:class => "form-control" , :value => @agent.name  %>
         </div>
         <div class="form-group">
-        <%= f.label "الحي او المنطقة" %><br><%= collection_select(:agent, :region, Region.all, :name, :name, {},{:multiple =>false}) %>
+        <%= f.label "الحي او المنطقة" %><br><%= collection_select(:agent, :region, Region.all, :name, :name, {},{:multiple =>false, :class => "form-control"}) %>
         </div>
         <div class="form-group">
-        <%= f.label "المجاورة أو الناحية" %><br><%= collection_select(:agent, :neighbour, Neighbour.all, :name, :name, {},{:multiple =>false}) %>
+        <%= f.label "المجاورة أو الناحية" %><br><%= collection_select(:agent, :neighbour, Neighbour.all, :name, :name, {},{:multiple =>false, :class => "form-control"}) %>
         </div>
         <div class="form-group">
         <%= f.label "الشارع" %><%= f.text_field :street,:class => "form-control" %>
@@ -35,7 +31,7 @@
         <%= f.label "العنوان" %><%= f.text_field :address,:class => "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label "النشاط" %><br><%= collection_select(:agent, :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false})  %>
+        <%= f.label "النشاط" %><br><%= collection_select(:agent, :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false, :class => "form-control"})  %>
       </div>
       <div class="form-group">
         <%= f.label "مختصر عن النشاط" %><br><%= f.text_area :brief_of_activity %>
@@ -75,7 +71,12 @@
         <%= f.label "تليفون" %><%= f.text_field :tel3,:class => "form-control" %>
       </div>
        <div class="form-group">
-      <%= f.label "بريد الكتروني" %><%= f.text_field :email,:class => "form-control",:value => current_user.email , :readonly => true %>
+        <% if (current_user.is_admin?) %>
+      <%= f.label "بريد الكتروني" %><%= f.text_field :email,:class => "form-control",:value => 'بدون بريد الكتروني' , :readonly => true %>
+      <% else %>
+      <%= f.label "بريد الكتروني" %><%= f.text_field :email,:class => "form-control",:value => current_user.email  , :readonly => true %>
+      
+      <% end %>
       </div> 
       <div class="form-group">
       <%= f.label "بداية العمل (ساعة , دقيقة)" %><br><%= f.time_select :start,:class => "form-control" %>

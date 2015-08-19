@@ -2,9 +2,9 @@
 class AgentsController < ApplicationController
       include AgentsHelper
       include SimpleCaptcha::ControllerHelpers
-  before_filter :authenticate_user!, except: [ :show ]
+  before_filter :authenticate_user!, except: [:show_map, :show_route, :show ]
      #the arrange or the dependency of i_am_admin_or_owner on set_agent is important.
-  before_action :set_agent, only: [:i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
+  before_action :set_agent, only: [:showmap, :showroute, :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
   before_action :i_am_admin_or_owner , only: [ :edit, :update, :destroy]
 
   # GET /agents
@@ -30,6 +30,7 @@ class AgentsController < ApplicationController
   def new
     @agent = Agent.new
   end
+
   def waited
     
     if current_user.is_admin? 
@@ -49,7 +50,7 @@ class AgentsController < ApplicationController
     @agent = Agent.new(agent_params)
 
     respond_to do |format|
-      if @agent.save_with_captcha
+      if  (@agent.save_with_captcha and @agent.update(:user_id => current_user.id))
         # AgentMailer.welcome_email(@agent).deliver_now
         #sending SMS with saved agent's data
         # send_sms(@agent)
@@ -90,9 +91,6 @@ class AgentsController < ApplicationController
   #verify action is to mark the "ok" field in the agents table to true to be showon in searching.
   # verify is a member of agents route- get agents/:id/verify.
   def toggle
-    puts "from waited ========/////////////////////////////////////================="
-    puts params.inspect
-    puts "========================="
     if current_user.is_admin? 
           if @agent.ok 
                @agent.update(:ok => false)
@@ -105,6 +103,13 @@ class AgentsController < ApplicationController
     end
   end
 
+  def showmap
+
+  end
+  def showroute
+
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agent

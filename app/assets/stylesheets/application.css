@@ -17,12 +17,7 @@
  *= require chosen
  *= require_tree .
  */
-div#map {
-position: absolute;
-top: 0;
-bottom: 0;
-width: 100%;
-}
+
 
 #the_top_of_the_page{
   margin-top: 30px;
@@ -35,8 +30,6 @@ body > nav.pagination > span {
   padding-left: 10px;
   font-size: 16px;
 }
-
-
 
 .ui-autocomplete { height: 100px; overflow-y: scroll; overflow-x: hidden;}
 
@@ -80,14 +73,6 @@ body > ul > li > a > span{
 	  margin-top: 16px;
   	font-size: 13px;
 }
-
-
-#bs-example-navbar-collapse-1 > ul > li{/*margin-left: -10px*/}
-/*body > .navbar{
-    width: 99%;
-    position: fixed;
-    top:0;
-  }*/
 
 #error{
 	font-size: 20px;

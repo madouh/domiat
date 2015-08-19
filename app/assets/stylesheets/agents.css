@@ -55,7 +55,9 @@ table td{
 #agent_day_off_chosen > ul > li{
 	float:right;
 }
-#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > strong > a{
+
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > strong{
 	
 	font-size: 15px;
+	color:white;
 }

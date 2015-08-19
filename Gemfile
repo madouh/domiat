@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 #google map api access token # pk.eyJ1IjoibWFkb3VoIiwiYSI6ImE0MDU0OWFhZjZmYjY1NDMwYmY4NTE3NzkyNDE1ZDFmIn0.-ECw3qHWXfcdWp4yCu1oLQ
+#api key AIzaSyCqltDs-503nvPdz5AprPqTtKAp-wktLd0
 #gem 'backup'
 #gem 'clockwork'
 #gem "heroku_backup_task"
