@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   resources :agents do
        member do
          get 'toggle'
-         get 'showmap'
-         get 'showroute'
+         get 'mapandroute'
          
     end
   end

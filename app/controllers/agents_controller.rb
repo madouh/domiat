@@ -2,9 +2,9 @@
 class AgentsController < ApplicationController
       include AgentsHelper
       include SimpleCaptcha::ControllerHelpers
-  before_filter :authenticate_user!, except: [:show, :showmap, :showroute ]
+  before_filter :authenticate_user!, except: [:show, :mapandroute ]
      #the arrange or the dependency of i_am_admin_or_owner on set_agent is important.
-  before_action :set_agent, only: [:showmap,:showroute, :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
+  before_action :set_agent, only: [:mapandroute, :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
   before_action :i_am_admin_or_owner , only: [ :edit, :update, :destroy]
 
   # GET /agents
@@ -103,11 +103,9 @@ class AgentsController < ApplicationController
     end
   end
 
-  def showmap
+  def mapandroute
   end
 
-  def showroute
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
