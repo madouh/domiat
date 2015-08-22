@@ -5,6 +5,8 @@
   <thead>
     <tr>
       <th>الاسم</th>
+      <th>الموقع على الخريطة</th>
+      <th>المسار على الخريطة</th>
       <th>النشاط</th>
       <th class='hide_in_tablet hide_in_phone'>الحي أو المنطقة</th>
       <th class='hide_in_tablet hide_in_phone'>المجاورة</th>
@@ -21,7 +23,14 @@
   <tbody>
     <% @result.each do |agent| %>
       <tr>
-        <td><%= link_to truncate(agent.name, :length => 20), agent %></td>
+        <td><%= link_to truncate(agent.name, :length => 25), agent %></td>
+
+        <td style="text-align:center;" data-no-turbolink ><%= link_to "الخريطة", showmap_agent_path(agent), :class => "btn btn-info", :style => "width:100%" %>
+        </td>
+
+        <td style="text-align:center;" data-no-turbolink ><%= link_to "المسار", showroute_agent_path(agent), :class => "btn btn-danger", :style => "width:100%" %>
+        </td>
+        
         <td><%= truncate(agent.activity, :length => 20) %></td>
         <td class='hide_in_tablet hide_in_phone'><%= truncate(agent.region, :length => 20) %></td>
         <td class='hide_in_tablet hide_in_phone'><%= truncate(agent.neighbour, :length => 20) %></td>
@@ -48,3 +57,4 @@
 <% end %>
 <%= paginate @result %>
 
+<%= link_to 'عودة', url_for(:back), :class => "btn btn-primary", :style => "width:200px;" %>

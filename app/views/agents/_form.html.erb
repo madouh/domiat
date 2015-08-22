@@ -16,7 +16,8 @@
      <div class="col-md-6" id="make_it_right" >
 
         <div class="form-group" >
-          <%= f.label "اسم النشاط أو اسم صاحب النشاط" %><%= f.text_field :name ,:class => "form-control" , :value => @agent.name  %>
+          <!-- , :value => @agent.name  -->
+          <%= f.label "اسم النشاط أو اسم صاحب النشاط" %><%= f.text_field :name ,:class => "form-control"  %>
         </div>
         <div class="form-group">
         <%= f.label "الحي او المنطقة" %><br><%= collection_select(:agent, :region, Region.all, :name, :name, {},{:multiple =>false, :class => "form-control"}) %>
@@ -107,9 +108,17 @@
         <div class="form-group">
           <%= f.label "موقع نت" %><%= f.text_field :website2, :class => "form-control" %>
         </div>
+        <!--
         <div class="form-group">
           <%= f.label "ارغب في الإعلان مستقبلاً" %>
           <%= f.check_box :can_announce, :class => "form-control" %>
+        </div>
+      -->
+        <div class="form-group">
+          <%= f.label "احداثي خط العرض(Latitude)" %>
+          <%= f.text_field :latitude, :class => "form-control" %>
+          <%= f.label "احداثي خط الطول(Langitude)" %>
+          <%= f.text_field :langitude, :class => "form-control" %>
         </div>
         <%= show_simple_captcha(:object=>"agent") %>
          <br>

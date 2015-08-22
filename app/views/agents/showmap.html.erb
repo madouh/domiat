@@ -1,83 +1,28 @@
+<h4>موقع <%= @agent.name %> على الخريطة:<a href="<%= showroute_agent_path(@agent) %>"  class='btn btn-success' style="float:left; color:white;"> رؤية المسار </a> </h4>
+<!-- <p>احداثي خط العرص = <%= @agent.latitude %></p>
+<p>احداثي خط الطول = <%= @agent.langitude %></p> -->
+<div id="map-canvas"  style="width:100%; height:700px"></div>
+<%= link_to 'عودة', url_for(:back), :class => "btn btn-primary" , :style => "width:200px;" %>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @agent.name %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @agent.langitude %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @agent.latitude %>
-</p>
-
-<%= link_to 'Edit', edit_agent_path(@agent) %> |
-<%= link_to 'Back', agents_path %>
-
-<hr>
-
-
-<div id="map_wrapper">
-    <div id="map_canvas" class="mapping"></div>
-</div>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<style>
-#map_canvas > div > div:nth-child(1) > div:nth-child(3) > div:nth-child(4) > div{
-  background-color: red;
-  padding: 2px;
-}
-</style>
 <script type="text/javascript">
-jQuery(function($) {
-    // Asynchronously Load the map API 
-    var script = document.createElement('script');
-    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
-    document.body.appendChild(script);
-});
+      var name= '<%= @agent.name %>';
+      var activity= '<%= @agent.activity %>';
+      var brief_of_activity= '<%= @agent.brief_of_activity %>';
+      var starting= '<%= (@agent.start).strftime("%I:%M %P") %>';
+      var ending = '<%= (@agent.end).strftime("%I:%M %P") %>';
+      var tel1='<%= @agent.tel1 %>';
+      var tel2='<%= @agent.tel2 %>';
+      var tel3='<%= @agent.tel3 %>';
+      var region= '<%= @agent.region %>';
+      var neighbour= '<%= @agent.neighbour %>';
+      var address= '<%= @agent.address %>';
+      var street= '<%= @agent.street %>';
+      var twenty_four= '<%= @agent.twenty_four ? "يعمل 24 ساعة" : "لا يعمل 24 ساعة "%>';
+      var lat=<%= @agent.latitude %>;
+      var lang=<%= @agent.langitude %>;
 
-function initialize() {
-    var map;
-    // Set the latitude & longitude for our location (London Eye)
-    var myLatlng = new google.maps.LatLng(<%= @agent.latitude %>,<%= @agent.langitude %>);
-    var mapOptions = {
-        center: myLatlng, // Set our point as the centre location
-        zoom: 15, // Set the zoom level
-        mapTypeId: 'hybrid' // set the default map type
-    };
-            
-    // Display a map on the page
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-    // Allow our satellite view have a tilted display (This only works for certain locations) 
-    map.setTilt(45);
+		
 
-    // Create our info window content   
-    var infoWindowContent = '<div class="info_content" >' +
-        '<h3 style="color:red;"><%= @agent.name %></h3>' +
-        '<p>مطور ويب</p>' +'<p style="color:blue;">الحي الثاني المجاورة السادسة بجوار مسجد التوبة الدور الثاني.</p>' +
-    '</div>';
+      google.maps.event.addDomListener(window, 'load',map_render(name,activity,brief_of_activity,starting,ending,tel1,tel3,tel3,region,neighbour,street,address,twenty_four,lat,lang));
 
-    // Initialise the inforWindow
-    var infoWindow = new google.maps.InfoWindow({
-        content: infoWindowContent
-    });
-                
-    // Add a marker to the map based on our coordinates
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'London Eye, London'
-    });
-
-    // Display our info window when the marker is clicked
-     infoWindow.open(map, marker);
-
-     google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.open(map, marker);
-     });
- }
-</script>
+      </script>

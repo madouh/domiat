@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#h3label{
+	padding-top: -25px;
+	padding-bottom: -25px;
+}
 /*form{
 	width:200px;
 	margin-right:50px;
@@ -16,6 +20,9 @@ form *{
 	width:250px;
 }
 #agent_word1, #agent_word2,#agent_word3,#agent_word4,#agent_word5{
+	width:150px;
+}
+#agent_latitude, #agent_langitude{
 	width:150px;
 }
 h1{

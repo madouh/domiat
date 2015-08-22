@@ -1,10 +1,12 @@
- $('#map-canvas').ready(function(){
- var map, infoBubble;
+ 
+        $("#map-").css("width","100%");
+        $("#map-").css("height","700px");
+      function initialize() {
+         var map, infoBubble;
 
-      function init() {
         var mapCenter = new google.maps.LatLng(31.44235,31.68369);
 
-        map = new google.maps.Map(document.getElementById('map-canvas'), {
+        map = new google.maps.Map(document.getElementById("map-"), {
           zoom: 14,
           center: mapCenter,
           mapTypeId: google.maps.MapTypeId.HYBRID
@@ -58,5 +60,5 @@
         });
       }
       // end of init function
-      google.maps.event.addDomListener(window, 'load', init);
-      });
+      
+     

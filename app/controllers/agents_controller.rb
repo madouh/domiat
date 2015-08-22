@@ -2,9 +2,9 @@
 class AgentsController < ApplicationController
       include AgentsHelper
       include SimpleCaptcha::ControllerHelpers
-  before_filter :authenticate_user!, except: [:show_map, :show_route, :show ]
+  before_filter :authenticate_user!, except: [:show, :showmap, :showroute ]
      #the arrange or the dependency of i_am_admin_or_owner on set_agent is important.
-  before_action :set_agent, only: [:showmap, :showroute, :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
+  before_action :set_agent, only: [:showmap,:showroute, :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
   before_action :i_am_admin_or_owner , only: [ :edit, :update, :destroy]
 
   # GET /agents
@@ -104,12 +104,11 @@ class AgentsController < ApplicationController
   end
 
   def showmap
-
   end
+
   def showroute
-
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agent
@@ -130,6 +129,6 @@ class AgentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def agent_params
       params[:agent][:day_off] ||= []
-      params.require(:agent).permit(:name, :region, :neighbour, :street, :address, :activity, :brief_of_activity, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key, day_off: [])
+      params.require(:agent).permit(:name, :region, :neighbour, :street, :address, :activity, :brief_of_activity, :twenty_four, :word1, :word2, :word3, :word4, :word5, :tel1, :tel2, :tel3, :email, :start, :end, :website1, :website2, :can_announce, :captcha, :captcha_key, :latitude, :langitude, day_off: [])
     end
 end

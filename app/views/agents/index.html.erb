@@ -26,6 +26,8 @@
       <th>موقع نت</th>
       <th>موقع نت</th>
       <th>الإعلان</th>
+      <th>Map</th>
+      <th>Route</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -68,8 +70,12 @@
           <strong>لا</strong>
           <% end %>
         </td>
-        
+        <td style="text-align:center;" data-no-turbolink ><%= link_to "الخريطة", showmap_agent_path(agent), :class => "btn btn-success" %>
+        </td>
+        <td style="text-align:center;" data-no-turbolink ><%= link_to "المسار", showmap_agent_path(agent), :class => "btn btn-success" %>
+        </td>
         <td><%= link_to 'تعديل', edit_agent_path(agent), :class => "btn btn-primary" %></td>
+
         <td>
               <% if agent.ok  %>
             <%= link_to 'تعليق', toggle_agent_path(agent), :class => "btn btn-info" %>
