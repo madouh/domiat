@@ -12,6 +12,7 @@
 
 <script type="text/javascript">
 
+
 $("#show_route").click(function(){
   drawroute();
 
@@ -131,9 +132,9 @@ $('#directionsPanel').css("display","block");
           draggable: false,
           title:name + "   "+ activity
         });
-    // google.maps.event.addDomListener(map, 'click', function(e){
-   // alert("I am clicked");
-  //      console.log(e)});
+    google.maps.event.addDomListener(map, 'click', function(e){
+    alert(e);
+        console.log(e)});
 
         infoBubble = new InfoBubble({
           maxWidth: 600
@@ -163,4 +164,17 @@ $('#directionsPanel').css("display","block");
         });
       }
       // end of init function
+      
+//       google.maps.event.addListener(map, 'mousemove', function (event) {
+//               displayCoordinates(event.latLng);               
+//           });
+
+// function displayCoordinates(pnt) {
+
+//           var lat = pnt.lat();
+//           lat = lat.toFixed(4);
+//           var lng = pnt.lng();
+//           lng = lng.toFixed(4);
+//           console.log("Latitude: " + lat + "  Longitude: " + lng);
+//       }
 </script>

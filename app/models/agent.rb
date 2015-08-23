@@ -36,13 +36,19 @@ validates :tel1 , :presence => { message:"رقم التليفون اﻷول يج
 					 :uniqueness => { message:"رقم التليفون الذي أدخلته موجود مسبقاً"}
 
 validates :latitude , :presence => { message:"الاحداثي يجب أن يكون موجوداً"}, 
-					length:{maximum:15, message:"الاحداثي لا يزيد عن 15 رقم"} ,
-					 length:{minimum:10, message:"الاحداثي لا يقل عن 10 أرقام"}
+					length:{maximum:18, message:"الاحداثي لا يزيد عن 18 رقم"} ,
+					 length:{minimum:8, message:"الاحداثي لا يقل عن 8 أرقام"}
 
 validates :langitude ,  :presence => { message:"الاحداثي يجب أن يكون موجوداً"}, 
-					length:{maximum:15, message:"الاحداثي لا يزيد عن 15 رقم"} ,
-					 length:{minimum:10, message:"الاحداثي لا يقل عن 10 أرقام"}
+					length:{maximum:18, message:"الاحداثي لا يزيد عن 18 رقم"} ,
+					 length:{minimum:8, message:"الاحداثي لا يقل عن 8 أرقام"}
+ validates_numericality_of :tel1
+ 
+  validates_numericality_of :latitude, greater_than_or_equal_to:31.4010
+  validates_numericality_of :latitude, less_than_or_equal_to: 31.4635
 
+  validates_numericality_of :langitude, greater_than_or_equal_to: 31.6367
+  validates_numericality_of :langitude, less_than_or_equal_to: 31.72
 
 	#validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
     #validates :email, :uniqueness => { message:"البريد الإلكتروني الذي أدخلته موجود مسبقاً"}
