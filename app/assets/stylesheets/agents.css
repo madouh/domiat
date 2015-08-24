@@ -20,10 +20,10 @@ form *{
 	width:250px;
 }
 #agent_word1, #agent_word2,#agent_word3,#agent_word4,#agent_word5{
-	width:150px;
+	width:170px;
 }
 #agent_latitude, #agent_langitude{
-	width:150px;
+	width:170px;
 }
 h1{
 	text-aligh:center;
@@ -40,7 +40,7 @@ fieldset{
 
 }
 legend{
-	width:100px;
+	width:130px;
 }
 #agent_brief_of_activity{
 	width:270px;

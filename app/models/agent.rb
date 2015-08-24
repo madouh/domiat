@@ -50,8 +50,13 @@ validates :tel1, numericality: { only_integer: true, message:"رقم التلي�
 
   validates :tel2,:tel3, numericality: { only_integer: true, :allow_blank => true, :message =>"رقم التليفون يجب أن يكون أرقام فقط. أو فارغاً" } ,
   			:uniqueness => { message:"رقم التليفون الذي أدخلته موجود مسبقاً"}
+ validate :start_equal_end_time
 
-
+  	def start_equal_end_time
+		if self.start == self.end
+			errors.add(:end, 'لا يمكن أن يكون وقت بداية العمل يساوي وقت اﻹنتهاء طالما أنك لم تعمل 24 ساعة') unless self.twenty_four
+		end
+  	end
 
 	belongs_to :user
   apply_simple_captcha
