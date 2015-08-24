@@ -8,10 +8,11 @@
   </thead>
   <tr>
     <td>
-  <strong>اﻹسم:</strong>
+  <strong>اسم النشاط :</strong>
     </td>
-    <td>
-  <%= @agent.name %>
+    <td><strong>
+     <%= @agent.name %>
+      </strong>
     </td>
     <td>
   <strong>المنطقة:</strong>
@@ -24,11 +25,32 @@
     <td>
   <strong>الخريطة:</strong>
     </td>
-    <td style="text-align:center;" data-no-turbolink ><%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
+    <td  data-no-turbolink >
+      <% if current_user %>
+            <% if ((@agent.ok) or (current_user.is_admin?)) %>
+                <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
+            <% else %>
+                <strong>لا يمكن عرص الخريطة إلا بعد مراجعة البيانات من قبل الموقع.</strong>
+            <% end %>
+      <% else %>
+            <strong>لا يمكن عرص الخريطة إلا بعد مراجعة البيانات من قبل الموقع.</strong>
+
+      <% end %>
+
     </td>
-    <td></td>
-    <td>
-    </td>
+     <% if current_user %>
+            <% if (current_user.is_admin?) %>
+                  <td><b>احداثيات الموقع :</b></td>
+                  <td><b>Latitude</b> :<code style="font-size:16px; color:red;"> <%= @agent.latitude %></code> / <b>Langitude</b> : <code style="font-size:16px; color:red;"><%= @agent.langitude %></code></td>
+            <% else %>
+                  <td><b>احداثيات الموقع :</b></td>
+                  <td><b>يتم رصدها أو مراجعتها فعلياً من قبل إدارة الموقع</b></td>
+            <% end %>
+    <% else %>
+            <td><b>احداثيات الموقع :</b></td>
+            <td><b>يتم رصدها أو مراجعتها فعلياً من قبل إدارة الموقع</b></td>
+           
+    <% end %>
     </tr>
   <tr>
     <td>
@@ -201,7 +223,7 @@
     <% if ((current_user.is_admin?)) %>
              <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
             <%= link_to 'عرض الكل', agents_path, :class => "btn btn-primary" %>
-    <% elsif (@agent.email==current_user.email) %>
+    <% elsif (@agent.user_id==current_user.id) %>
             <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
             
      <% end %>

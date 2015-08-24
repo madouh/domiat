@@ -4,7 +4,8 @@ class AgentsController < ApplicationController
       include SimpleCaptcha::ControllerHelpers
   before_filter :authenticate_user!, except: [:show, :mapandroute ]
      #the arrange or the dependency of i_am_admin_or_owner on set_agent is important.
-  before_action :set_agent, only: [:mapandroute, :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
+  before_action :set_agent, only: [ :i_am_admin_or_owner, :toggle, :show, :edit, :update, :destroy]
+  before_action :set_verified_agent, only: [:mapandroute]
   before_action :i_am_admin_or_owner , only: [ :edit, :update, :destroy]
 
   # GET /agents
@@ -91,12 +92,13 @@ class AgentsController < ApplicationController
   #verify action is to mark the "ok" field in the agents table to true to be showon in searching.
   # verify is a member of agents route- get agents/:id/verify.
   def toggle
+
     if current_user.is_admin? 
           if @agent.ok 
-               @agent.update(:ok => false)
+               @agent.update_attribute(:ok,false)
                flash[:notice] = "The agent is waited"
           else
-              @agent.update(:ok => true)
+              @agent.update_attribute(:ok,true)
               flash[:notice] = "The agent is verified, ThanX  "
           end
         redirect_to :agents_waited
@@ -112,11 +114,21 @@ class AgentsController < ApplicationController
     def set_agent
       @agent = Agent.find(params[:id])
     end
+
+    def set_verified_agent
+
+      if current_user.is_admin?
+
+        @agent = Agent.find(params[:id])
+      else
+      @agent= Agent.where(:ok => true).find(params[:id])
+      end
+    end
 # verify if the current user is admin , if not, redirect_to the root path
     def i_am_admin_or_owner
       unless ((current_user.is_admin?) or (@agent.email==current_user.email))
         redirect_to :root    
-        flash[:error] = "You haven't the rights to access the required page."
+        flash[:error] = "ليس لديك الحق في رؤية هذة الصفحة."
      
        end
     end
