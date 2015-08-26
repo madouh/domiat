@@ -11,7 +11,7 @@ ExceptionHandler.setup do |config|
 
 	#Email -
 	#Default = false / true
-	config.email = 'mamdouh_farh@yahoo.com'
+	#config.email = 
 
 	#Social
 	config.social = {
