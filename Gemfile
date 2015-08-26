@@ -15,7 +15,7 @@ gem 'thin'
 gem 'kaminari'
 #gem "jquery-rails", "~> 2.3.0"
 # gem 'mapbox-rails'
-
+gem 'exception_handler'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"

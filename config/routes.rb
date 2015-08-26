@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ 
+
   get 'find/search'
   get 'find/show'
   get 'find/detail'
