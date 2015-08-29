@@ -1,0 +1,37 @@
+<% if @errors %>
+		<table border="2">
+			<tr>
+				<% @errors.attribute_names.each do |key,value| %>
+				<th>
+					<p><%= key %></p>
+
+				</th>
+				<% end %>
+			</tr>
+
+		<% @errors.each do |error| %>
+			<tr>
+
+				<% error.attributes.each do |key,value| %>
+				<td>
+					<% if key == 'id' and value != "Anonymous" %>
+						<%= link_to "show", "/domiat/show/#{value}" %>
+					<% elsif key == 'user_info' and value != "Anonymous" %>
+						<%  user=User.find(value) %>
+						<%= link_to user.username, "/domiat/user/#{value}" %>
+					<% else %>
+						<p><%= value %></p>
+
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+		<% end %>
+</table>
+
+
+<%= link_to 'حذف اﻷول', domiat_clean_path, data: { confirm: 'هل أنت متأكد من رغبتك في الحذف?' }  %>
+<%= link_to 'حذف الكل', domiat_cleanall_path, data: { confirm: 'هل أنت متأكد من رغبتك في الحذف للجميع?' }  %>
+<% else %>
+<h3>Nothing here please go back!</h3>
+<% end %>

@@ -1,0 +1,27 @@
+<h4>بيانات المستخدم رقم <%= @user.id %></h4>
+<p>الاسم : <%= @user.username %></p>
+<p>البريد اﻹلكتروني : <%= @user.email %><p>
+
+<% if @user.agents.count >0 %>
+	<% counter=1 %> 
+	<h4><%= @user.username %> - لدية - <%= @user.agents.count %> نشاط </h4>
+	<table border="2">
+			<tr>
+				<th>م</th>
+				<th style="width:300px; text-align:center;"><b>اسم النشاط</b></th>
+				<th style="width:300px; text-align:center;"><b>نوع النشاط</b></th>
+			</tr>
+		<% @user.agents.each do |a| %>
+
+			<tr>
+				<td><%= counter %></td>
+				<td style="width:300px; text-align:center;" ><%= link_to a.name, a %></td>
+				<td style="width:300px; text-align:center;" ><%= a.activity %></td>
+			</tr>
+			<% counter+=1 %>
+
+		<% end %>
+	</table>
+<% else %>
+<p><b><%= @user.username %> </b>: ليس لدية نشاطات.</p>
+<% end %>

@@ -85,3 +85,10 @@ production:
   database: pg_app_production
   username: <%= ENV['PG_USR_NAME'] %>
   password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>
+exception_database:
+  <<: *default
+  reconnect: false
+  database: pg_app_production
+  pool: 5
+  username:  <%= ENV['PG_USR_NAME'] %>
+  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>

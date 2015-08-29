@@ -107,7 +107,6 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     eventmachine (1.0.7)
-    exception_handler (0.3.45)
     excon (0.45.3)
     execjs (2.5.2)
     ffi (1.9.8)
@@ -205,6 +204,7 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails_exception_handler (2.3.4)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -284,7 +284,6 @@ DEPENDENCIES
   compass-rails!
   debugger
   devise
-  exception_handler
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.4)
   jquery-ui-rails
@@ -292,6 +291,7 @@ DEPENDENCIES
   pg
   pgbackups-archive
   rails (= 4.2.0)
+  rails_exception_handler (~> 2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_captcha2

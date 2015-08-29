@@ -21,6 +21,7 @@
 // =========================================================================
 //when the text input #search keyup , verify that its content is none null 
 // and send form by calling the click event one the search key
+
 $(document).on('keyup','#search',function(){
 		var x=($('#search').val()).trim()
 		if (x.length>1){

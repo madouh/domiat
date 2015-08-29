@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+ <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?language=ar" %>
+
+  <title>New Domiat - الموقع تحت الانشاء </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<link rel="shortcut icon" href="http://icons.iconarchive.com/icons/designbolts/seo/64/Natural-Link-icon.png">
+
+  <%= csrf_meta_tags %>
+  
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" data-no-turbolink>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/">www.new-domiat.com</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <li><a href="<%= about_path %>">اتصل بنا</a></li>
+        <li class="active"><a href="<%= find_detail_path %>">بحث متقدم</a></li>
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">اﻷنشطة <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">جامعات و مدارس</a></li>
+            <li><a href="#">خدمات حكومية</a></li>
+            <li><a href="#">الدليل</a></li>
+            <li class="divider"></li>
+            <li><a href="#">أنشطة شخصية</a></li>
+            <li class="divider"></li>
+            <li><a href="#">شركات و مصانع</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+      
+ <%= form_tag find_search_path, :class => "navbar-form navbar-left", method:"get", remote: true, :id => "form_search" do %>
+      <div class="form-group">
+      <%= text_field_tag :search, '',size:30, :class => "form-control", :placeholder =>"اكتب كلمة البحث هنا" , :autocomplete => :off %>
+      </div>
+
+      <%= submit_tag 'بحث', :class => "btn brn-default" , :id => 'search_key', :style => 'visibility:hidden' %>
+
+      <% end %>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <% if user_signed_in? %>
+
+        
+
+        <li><strong> <%= link_to "إدراج نشاط", new_agent_path %></strong></li>
+        <% if (current_user.is_admin?) %>
+                   <li style="display:none"><strong> <%= link_to "الانتظار", agents_waited_path %></strong></li>
+          <% end %>
+				<li><strong>مرحبا <%= current_user.username %></strong> -|-
+				<strong><%= link_to "خروج", destroy_user_session_path , :method => 'delete' %></strong></li>
+
+				<% else %>
+
+				<li><strong><%= link_to "دخول", new_user_session_path %></strong>-|-<strong><%= link_to "عميل جديد", new_user_registration_path %></strong></li>
+				<% end %>
+
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="the_top_of_the_page" style="height:0; padding:0; margin:-10px"></div>   
+
+				<% flash.each do |key, msg| %>
+				<%= content_tag :p, msg, :id => key %>
+				<% end %>
+    <!-- <div id="result"></div> -->
+				
+				<%= yield %>
+
+            <hr>
+
+            <footer >
+                <p>© Mamdouh Abbas Farh 2015</p>
+            </footer>
+</body>
+</html>

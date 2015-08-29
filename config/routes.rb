@@ -24,7 +24,14 @@ Rails.application.routes.draw do
 
   resources :regions
 
+  get 'domiat/cleanall'
+  get 'domiat/users'
   get 'domiat/welcome'
+  get 'domiat/user/:id' => 'domiat#user'
+
+  get 'domiat/clean'
+  get 'domiat/exception'
+  get 'domiat/show/:id'  => 'domiat#show'
   match 'about' => 'domiat#about', :as => 'about', via: :get
   #match 'domiat/about', :as => "about", via: :get
   root 'domiat#welcome'
