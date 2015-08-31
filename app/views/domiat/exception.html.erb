@@ -14,15 +14,9 @@
 
 				<% error.attributes.each do |key,value| %>
 				<td>
-					<% if key == 'id' and value != "Anonymous" %>
-						<%= link_to "show", "/domiat/show/#{value}" %>
-					<% elsif key == 'user_info' and value != "Anonymous" %>
-						<%  user=User.find(value) %>
-						<%= link_to user.username, "/domiat/user/#{value}" %>
-					<% else %>
-						<p><%= value %></p>
+				
+					<p><%= value %></p>
 
-					<% end %>
 				</td>
 				<% end %>
 			</tr>
