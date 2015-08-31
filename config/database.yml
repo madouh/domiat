@@ -26,6 +26,13 @@ default: &default
 development:
   <<: *default
   database: pg_app_development
+exception_database:
+  <<: *default
+  reconnect: false
+  database: pg_app_production
+  pool: 5
+  username:  <%= ENV['PG_USR_NAME'] %>
+  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is

@@ -8,7 +8,6 @@ class CreateErrorMessages < ActiveRecord::Migration
       t.text :target_url
       t.text :referer_url
       t.text :user_agent
-      t.text :login
       t.string :user_info
       t.string :app_name
       t.string :doc_root
