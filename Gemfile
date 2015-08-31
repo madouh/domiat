@@ -14,7 +14,7 @@ gem 'thin'
 #gem 'will_paginate'
 gem 'kaminari'
 #gem "jquery-rails", "~> 2.3.0"
-# gem 'mapbox-rails'
+gem 'geokit-rails'
 # gem 'exception_handler'
 gem 'rails_exception_handler', "~> 2"
 # Use SCSS for stylesheets

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'find/advanced'
   get 'find/corrupt'
   get 'find/ads'
+  get 'find/nearest'
+  get 'find/nearestresult'
   get 'agents/waited'
 
   devise_for :users #, :controllers => {:registerations=> "registerations"}

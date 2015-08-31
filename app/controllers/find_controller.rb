@@ -22,6 +22,7 @@ class FindController < ApplicationController
 
   end
 
+  
   def corrupt
     puts "from corrupt 00000000000000000000000000000000000"
     puts params.inspect
@@ -135,11 +136,22 @@ puts @result.inspect
 
       sent_activity=params[:activity]
       @result=@verified_agent.select(:id, :name,:activity,:brief_of_activity).where('activity=? ',sent_activity).limit(5).order("RANDOM()")
-      puts @result.inspect
+      #puts @result.inspect
 
   end
 
-  
+
+def nearest
+
+  end
+  def nearestresult
+    sent_activity=params[:activity]
+     x= params[:latitude].to_f
+    y=params[:langitude].to_f
+    id=@verified_agent.select(:id).where('activity=? ',sent_activity).by_distance(:origin => [x,y]).first
+    redirect_to agent_path(id)
+  end
+
   private
   
   def set_verified_agent
@@ -169,5 +181,6 @@ puts @result.inspect
     end
 
   end # of test_if_more_than_one
+ 
   
 end

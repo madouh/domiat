@@ -1,9 +1,38 @@
-<h1>بحث مفصَّل:</h1>
+
+<div class="container">
+    <div class="row" >
+  <h2>البحث عن أقرب نشاط : </h2>
+<div id='demo'></div>
+
+<%= form_tag find_nearestresult_path, method:"get" do  %>
+  
+     <div class="col-md-6"  id="make_it_right">
+
+<div class="form-group" data-no-turbolink>
+    <%= collection_select("", :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false, :class => "form-control", :style => "width:250px;"})  %>
+</div>
+
+    <%= hidden_field_tag :latitude ,'', :style =>"width:250px;",:id=>"latitude" %>
+
+   <%= hidden_field_tag :langitude ,'', :style =>"width:250px;",:id=>"langitude" %>
+
+<div class="form-group">
+        <div class="actions">
+        
+          <%= submit_tag "بحث", :class => "btn btn-success btn-lg  active_after_activity", :id=>"nearest_search", disabled:true %>
+        </div>
+</div>
+<% end %>
+</div>
+</div>
+<hr>
 <div class="container">
     <div class="row">
 <%= form_tag find_advanced_path, method:"get" do  %>
-  
+  <h2>بحث مفصَّل:</h2>
+
      <div class="col-md-6" id="make_it_right" >
+
       <div class="form-group">
         <%= label_tag "فئة النشاط" %><br><%= collection_select("", :activity, Activity.all, :name, :name, {:prompt => "اختر النشاط"},{:multiple =>false,:class => "form-control ", :id=>"activity_select" , :style =>"width:250px;"})  %>
       </div>
@@ -68,3 +97,23 @@
 </div>
 
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  getLocation();
+});
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "<p>يجب عليك تمكين الكشف عن موقعك للإستمرار</p>";
+    }
+}
+function showPosition(position) {
+  // alert("hello");
+    $('#latitude').val(position.coords.latitude)  ;
+
+    $('#langitude').val(position.coords.longitude);
+}
+</script>

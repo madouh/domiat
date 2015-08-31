@@ -97,6 +97,43 @@ $.ajax({
 								});
 
 
+// $(document).on('click','#_activity',function(eve){
+// 	if($('#_activity').val()!= ""){
+// 		$('#nearest_search').attr( "disabled", false );
+// 	}
+// 	else 
+// 	{
+// 			$('#nearest_search').attr( "disabled", true );
+
+// 	}
+
+// });
+
+$(document).on('click','#_activity',function(event,ui){
+		if ($('#_activity').val() != "") {
+		$('#nearest_search').attr( "disabled", false );
+		$("div.alert").hide();
+
+$.ajax({
+	 beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+
+										        type: 'GET', 
+											        url: '/find/ads' , 
+											        dataType: 'script',
+											        data: { activity: $('#_activity').val() }
+
+											    });
+				}
+			else {
+			$('#nearest_search').attr( "disabled", true );
+
+			}
+								});
+
+
+
+
+
 
 
 

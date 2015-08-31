@@ -1,6 +1,11 @@
 # encoding: UTF-8
 class Agent < ActiveRecord::Base
-	#before_save {self.email=email.downcase}
+acts_as_mappable :default_units => :kms,
+                   :default_formula => :flat,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :langitude
+
 validates :name , :presence => { message:"اسم النشاط يجب أن يكون موجوداً"}, 
 					length:{maximum:25, message:"اسم النشاط لا يزيد عن 25 حروف"} ,
 					 length:{minimum:6, message:"اسم النشاط لا يقل عن 6 حروف"}
