@@ -3,20 +3,21 @@
 			<tr>
 				<% @errors.attribute_names.each do |key,value| %>
 				<th>
-					<p><%= key %></p>
-
+					<%= key %>
 				</th>
 				<% end %>
 			</tr>
-
 		<% @errors.each do |error| %>
 			<tr>
-
 				<% error.attributes.each do |key,value| %>
 				<td>
-				
-					<p><%= value %></p>
-
+					<% if key == 'id' and value != "Anonymous" %>
+						<%= link_to "show", "/domiat/show/#{value}" %>
+					<% elsif key == 'user_info' and value != "Anonymous" %>
+						<%= link_to value, "/domiat/user/#{value}" %>
+					<% else %>
+						<%= truncate("#{value}", :length => 40)  %>
+					<% end %> 
 				</td>
 				<% end %>
 			</tr>

@@ -62,5 +62,5 @@ config.response_mapping = {
     storage[:app_name] =     Rails.application.class.parent_name
     storage[:created_at] =   Time.now
   end
-   config.store_user_info = {:method => :current_user, :field => :username } # Helper method for easier access to current_user
+   config.store_user_info = {:method => :current_user, :field => :id } # Helper method for easier access to current_user
 end

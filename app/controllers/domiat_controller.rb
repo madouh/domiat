@@ -23,7 +23,7 @@ class DomiatController < ApplicationController
   end
   def cleanall
   	ErrorMessage.delete_all
-  	redirect_to :domiat_show
+  	redirect_to :domiat_exception
   end
   def user
   	@user=User.find(params[:id])
