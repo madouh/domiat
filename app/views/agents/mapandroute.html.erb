@@ -17,9 +17,9 @@ $("#show_route").click(function(){
   drawroute();
 
   infoBubble.close();
-   $("#details_of_route").css("display",'inline');
-   $("#directionsPanel").html("");
-   $("#show_route").hide();
+  $("#details_of_route").css("display",'inline');
+  $("#directionsPanel").html("");
+  $("#show_route").hide();
 });
   var latlng = new google.maps.LatLng(31.44235,31.68369);
     var myOptions = {
@@ -34,7 +34,7 @@ $("#show_route").click(function(){
   function drawroute(){
   var infoWindow1 = new google.maps.InfoWindow({map: map});
   var infoWindow2 = new google.maps.InfoWindow({map: map});
-  if (navigator.geolocation) {
+      if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
        pos = {
         lat: position.coords.latitude,
@@ -62,7 +62,6 @@ $("#show_route").click(function(){
 
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
-        // console.log(response);
         directionsDisplay.setDirections(response);
        }
     });
@@ -166,16 +165,16 @@ $("#show_route").click(function(){
       }
       // end of init function
 
-      google.maps.event.addListener(map, 'click', function (event) {
-               displayCoordinates(event.latLng);               
-          });
+//       google.maps.event.addListener(map, 'mousemove', function (event) {
+//               displayCoordinates(event.latLng);               
+//           });
 
- function displayCoordinates(pnt) {
+// function displayCoordinates(pnt) {
 
-           var lat = pnt.lat();
-           lat = lat.toFixed(4);
-           var lng = pnt.lng();
-           lng = lng.toFixed(4);
-          console.log("Latitude: " + lat + "  Longitude: " + lng);
-                 }
+//           var lat = pnt.lat();
+//           lat = lat.toFixed(4);
+//           var lng = pnt.lng();
+//           lng = lng.toFixed(4);
+//           console.log("Latitude: " + lat + "  Longitude: " + lng);
+//       }
 </script>

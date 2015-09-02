@@ -6,6 +6,7 @@ source 'https://rubygems.org'
 #gem "heroku_backup_task"
 gem "pgbackups-archive"
 gem 'aws-sdk'
+gem 'rails_exception_handler', "~> 2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -13,7 +14,9 @@ gem 'pg'
 gem 'thin'
 #gem 'will_paginate'
 gem 'kaminari'
+#gem "jquery-rails", "~> 2.3.0"
 gem 'geokit-rails'
+# gem 'mapbox-rails'
 gem 'rails_exception_handler', "~> 2"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

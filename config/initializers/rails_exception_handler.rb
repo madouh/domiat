@@ -1,6 +1,6 @@
 RailsExceptionHandler.configure do |config|
    config.environments = [:production]   # Defaults to [:production]
-   config.fallback_layout = 'home'                                         # Defaults to 'application'
+  # config.fallback_layout = 'home'                                         # Defaults to 'application'
   # config.after_initialize do
   #   # This block will be called after the initialization is done.
   #   # Usefull for interaction with authentication mechanisms, which should

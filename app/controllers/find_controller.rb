@@ -5,17 +5,17 @@ class FindController < ApplicationController
     before_action :test_if_more_than_one  , only: [ :advanced ]
  
   def search
-  	@clean_params=(params[:search]).gsub(/\s+/, ' ')
-  	query="%" + @clean_params + "%"
-  	@auto=[]
-  	@auto.concat(@verified_agent.where('name LIKE ?', query).limit(5).pluck(:name))
-  	@auto.concat(@verified_agent.where('activity LIKE ?', query).limit(5).pluck(:activity))
-  	@auto.concat(@verified_agent.where('word1 LIKE ?', query).limit(5).pluck(:word1))
-  	@auto.concat(@verified_agent.where('word2 LIKE ?', query).limit(5).pluck(:word2))
-  	@auto.concat(@verified_agent.where('word3 LIKE ?', query).limit(5).pluck(:word3))
-  	@auto.concat(@verified_agent.where('word4 LIKE ?', query).limit(5).pluck(:word4))
-  	@auto.concat(@verified_agent.where('word5 LIKE ?', query).limit(5).pluck(:word5))
-  	@auto.uniq!
+    @clean_params=(params[:search]).gsub(/\s+/, ' ')
+    query="%" + @clean_params + "%"
+    @auto=[]
+    @auto.concat(@verified_agent.where('name LIKE ?', query).limit(5).pluck(:name))
+    @auto.concat(@verified_agent.where('activity LIKE ?', query).limit(5).pluck(:activity))
+    @auto.concat(@verified_agent.where('word1 LIKE ?', query).limit(5).pluck(:word1))
+    @auto.concat(@verified_agent.where('word2 LIKE ?', query).limit(5).pluck(:word2))
+    @auto.concat(@verified_agent.where('word3 LIKE ?', query).limit(5).pluck(:word3))
+    @auto.concat(@verified_agent.where('word4 LIKE ?', query).limit(5).pluck(:word4))
+    @auto.concat(@verified_agent.where('word5 LIKE ?', query).limit(5).pluck(:word5))
+    @auto.uniq!
     puts "from search 00000000000000000000000000000000000"
     puts @auto.inspect
     puts "from search 00000000000000000000000000000000000"
@@ -46,8 +46,8 @@ class FindController < ApplicationController
 puts "////////////*////*/*/*/*/*//////////////////////*******************"
       #decrypted_back = crypt.decrypt_and_verify(encrypted_data)
       puts @clean_params
-      	# @clean_params=@clean_params.gsub(/\s+/, ' ')
-      	@result=@verified_agent.where('name=? OR activity=? OR word1=? OR word2=? OR word3=? OR word4=? OR word5=?',@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params).page params[:page]
+        # @clean_params=@clean_params.gsub(/\s+/, ' ')
+        @result=@verified_agent.where('name=? OR activity=? OR word1=? OR word2=? OR word3=? OR word4=? OR word5=?',@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params).page params[:page]
         respond_to do |format|
             format.html 
             format.js 
@@ -155,7 +155,7 @@ def nearest
   private
   
   def set_verified_agent
-  	  	@verified_agent=Agent.where('ok=?',true)
+        @verified_agent=Agent.where('ok=?',true)
 
   end
 
