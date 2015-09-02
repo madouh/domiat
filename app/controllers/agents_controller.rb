@@ -117,12 +117,18 @@ class AgentsController < ApplicationController
 
     def set_verified_agent
       if current_user
-        if current_user.is_admin?
+            if current_user.is_admin?
+              @agent = Agent.find(params[:id])
+            elsif @agent.ok
+                 @agent= Agent.where(:ok => true).find(params[:id])
+            else
+              raise "عفواً هذا النشاط لم يتم التحقق من بياناته ختى اﻵن أو هناك خطأ ما"
+            end
+      elsif @agent.ok
+           @agent= Agent.where(:ok => true).find(params[:id])
+      else
+        raise "عفواً هذا النشاط لم يتم التحقق من بياناته ختى اﻵن أو هناك خطأ ما"
 
-          @agent = Agent.find(params[:id])
-        else
-        @agent= Agent.where(:ok => true).find(params[:id])
-        end
       end
     end
 # verify if the current user is admin , if not, redirect_to the root path
