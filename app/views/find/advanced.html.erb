@@ -46,14 +46,7 @@
     <% end %>
   </tbody>
 </table>
-
+<% else %>
+<h3>عفواً لا يوجد نتائج لهذا البحث.</h3>
 <% end %>
 <%= paginate @result %>
-
-
-<%= paginate @result %>
-<!--
-<% @result.each do |result| %>
-<%= result.inspect %>
-<hr>
-<% end %>
