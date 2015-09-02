@@ -26,7 +26,7 @@
   <strong>الخريطة:</strong>
     </td>
     <td  data-no-turbolink >
-      <% if (@agent.latitude.blank? or @agent.langitude.blank?) %>
+      <% unless (@agent.latitude.blank? or @agent.langitude.blank?) %>
             <% if current_user %>
                   <% if (current_user.is_admin?) %>
                       <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
