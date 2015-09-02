@@ -123,10 +123,8 @@ class AgentsController < ApplicationController
             else
             @agent= Agent.where(:ok => true).find(params[:id])
             end
-      elsif @agent.ok
-           @agent= Agent.where(:ok => true).find(params[:id])
       else
-        raise "هذا النشاط لم يتم التحقق من بياناته ختى اﻵن"
+           @agent= Agent.where(:ok => true).find(params[:id])
 
       end
     end
