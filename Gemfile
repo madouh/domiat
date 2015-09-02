@@ -14,8 +14,7 @@ gem 'thin'
 #gem 'will_paginate'
 gem 'kaminari'
 gem 'geokit-rails'
-# gem 'exception_handler'
- gem 'rails_exception_handler', "~> 2"
+gem 'rails_exception_handler', "~> 2"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"

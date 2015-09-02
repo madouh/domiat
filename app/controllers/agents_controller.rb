@@ -116,12 +116,13 @@ class AgentsController < ApplicationController
     end
 
     def set_verified_agent
+      if current_user
+        if current_user.is_admin?
 
-      if current_user.is_admin?
-
-        @agent = Agent.find(params[:id])
-      else
-      @agent= Agent.where(:ok => true).find(params[:id])
+          @agent = Agent.find(params[:id])
+        else
+        @agent= Agent.where(:ok => true).find(params[:id])
+        end
       end
     end
 # verify if the current user is admin , if not, redirect_to the root path

@@ -14,25 +14,33 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-default: &default
+development:
   adapter: postgresql
   encoding: unicode
-  username: postgres_app
-  password: 0100200697
+  database: pg_development
+  pool: 5
+  username: <%= ENV['PG_USR_NAME'] %>
+  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>   ### password you have specified within psql
+  host: localhost
+  port: 5432 
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   username: 'postgres_app' #<%= ENV['PG_USR_NAME'] %>
+#   password: '0100200697'#<%= ENV['PG_APP_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 5
+  # pool: 5
 
-development:
-  <<: *default
-  database: pg_app_development
-exception_database:
-  <<: *default
-  reconnect: false
-  database: pg_app_production
-  pool: 5
-  username:  <%= ENV['PG_USR_NAME'] %>
-  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>
+# development:
+#   <<: *default
+#   database: pg_production
+#   host: localhost
+# exception_database:
+#   <<: *default
+#   reconnect: false
+#   database: pg_production
+#   host: localhost
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -63,9 +71,9 @@ exception_database:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: pg_app_test
+# test:
+#   <<: *default
+#   database: pg_app_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -86,15 +94,30 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# exception_database:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: pg_production
+#   pool: 5
+#   username: <%= ENV['PG_USR_NAME'] %>
+#   password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>    ### password you have specified within psql
+#   host: localhost
+#   port: 5432 
+# production:
+#   <<: *default
+#   database: pg_production
+#   host: localhost
+# exception_database:
+#   <<: *default
+#   reconnect: false
+#   database: pg_production
+#   host: localhost
 production:
-  <<: *default
-  database: pg_app_production
-  username: <%= ENV['PG_USR_NAME'] %>
-  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>
-exception_database:
-  <<: *default
-  reconnect: false
-  database: pg_app_production
+  adapter: postgresql
+  encoding: unicode
+  database: pg_production
   pool: 5
-  username:  <%= ENV['PG_USR_NAME'] %>
-  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>
+  username: <%= ENV['PG_USR_NAME'] %>
+  password: <%= ENV['PG_APP_DATABASE_PASSWORD'] %>  ### password you have specified within psql
+  host: localhost
+  port: 5432 
