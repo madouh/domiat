@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :regions
   get 'domiat/cleanall'
+  get 'domiat/art'
   get 'domiat/users'
   get 'domiat/user/:id' => 'domiat#user'
 

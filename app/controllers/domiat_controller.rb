@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class DomiatController < ApplicationController
- before_action :verify, except: [:welcome, :about]
+ before_action :verify, except: [:welcome, :about,:art]
 
   def welcome
   end
@@ -24,6 +24,9 @@ class DomiatController < ApplicationController
   def cleanall
   	ErrorMessage.delete_all
   	redirect_to :domiat_exception
+  end
+
+  def art
   end
   def user
   	@user=User.find(params[:id])
