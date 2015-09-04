@@ -95,7 +95,7 @@ include SimpleCaptcha::ControllerHelpers
   private
 
   def i_am_admin
-    current_user.try(:admin?) 
+    if current_user.try(:admin?) 
         return
       else
         raise "ليس من حقك الوصول لهذة الصفحة"
