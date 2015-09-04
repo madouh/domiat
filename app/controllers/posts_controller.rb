@@ -1,8 +1,8 @@
-class PostsController < ApplicationController
-    include SimpleCaptcha::ControllerHelpers
-
+# encoding: UTF-8
+class PostsController < ApplicationController 
+include SimpleCaptcha::ControllerHelpers
+  before_filter :i_am_admin, except: [:wantdelete,:wrongdata,:newactivity,:complain,:suggest,:show,:new , :create]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
   # GET /posts
   # GET /posts.json
   def index
@@ -12,6 +12,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    unless flash[:notice]
+        redirect_to :root
+    end
   end
 
   # GET /posts/new
@@ -27,10 +30,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
     respond_to do |format|
       if @post.save_with_captcha
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: "تم ارسال ارسالة بنحاج ، و رقم الرسالة هو : #{ @post.id} ، شكراً لتواصلكم معنا ، و سوف يتم مراجهة الرسالة في أقرب و قت." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -63,7 +65,46 @@ class PostsController < ApplicationController
     end
   end
 
+  def suggest
+    @title="نموذج إقتراح:"
+    @post = Post.new
+  end
+
+  def newactivity
+    @title="نموذج إبلاغ عن نشاط جديد أو غير موجود:"
+    @post = Post.new
+  end
+
+  def wrongdata
+    @title="نموذج إبلاغ عن بيانات حاطئة:"
+    @post = Post.new
+  end
+
+  def complain
+    @title="نموذج شكوى من الموقع:"
+    @post = Post.new
+  end
+
+  def wantdelete
+    @title="طلب حذف بيانات:"
+    @post = Post.new
+  end
+
   private
+
+  def i_am_admin
+    if current_user
+      if current_user.is_admin?
+        return
+      else
+        raise "ليس من حقك الوصول لهذة الصفحة"
+      end
+   else
+      raise "ليس من حقك الوصول لهذة الصفحة"
+      
+  end
+
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -71,6 +112,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :comment, :captcha, :captcha_key)
+      params.require(:post).permit(:name,:cause,:tel, :captcha, :captcha_key, :comment)
     end
 end

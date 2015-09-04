@@ -1,3 +1,7 @@
+<% if @title %>
+<h3><%= @title %></h3>
+<% end %>
+
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -10,24 +14,30 @@
       </ul>
     </div>
   <% end %>
-     <%= show_simple_captcha(:object=>"post") %>
-
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label "الإسم" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
+    <%= f.label "التليفون" %><br>
+    <%= f.text_field :tel %>
+  </div>
+  <div class="field">
+    <%= f.label "الغرض من الرسالة" %><br>
+    <%= f.text_field :cause , :style=>"width:400px;" %>
+  </div>
+  <div class="field">
+    <%= f.label "الرسالة" %><br>
+    <%= f.text_area :comment, :style=>"width:400px; height:300px; font-size:18px;" %>
   </div>
 
   <% if @post.new_record? %>  
-    <!-- <div class="field">              
-        <%= show_simple_captcha %>
-    </div> -->
+    <div class="field">              
+        <%= show_simple_captcha(:object=>"post")  %>
+    </div> 
 
   <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "إرسال" , :class=>"btn btn-success" %>
   </div>
 <% end %>

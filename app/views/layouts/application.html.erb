@@ -12,7 +12,7 @@
   
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-
+<div class="wrapper">
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
 
   <div class="container-fluid">
@@ -75,7 +75,7 @@
 				<strong><%= link_to "خروج", destroy_user_session_path , :method => 'delete' %></strong></li>
 
 				<% else %>
-0
+
 				<li><strong><%= link_to "دخول", new_user_session_path %></strong>-|-<strong><%= link_to "عميل جديد", new_user_registration_path %></strong></li>
 				<% end %>
 
@@ -95,9 +95,14 @@
 				<%= yield %>
 
             <hr>
+    </div>
+    <div class='push'></div>
+    <footer>
+      <%= link_to "الصفحة الرئيسية", root_path %>|<%= link_to "بحث عن أقرب نشاط معين", find_detail_path %>|<%= link_to "فرصة عمل", "#" %>|<%= link_to "شقة للإيجار", "#" %>|<%= link_to "عقار للبيع", "#" %>|<%= link_to "اقتراحات", suggest_path %>|<%= link_to "إشعار بنشاط جديد أو غير مدرج", newactivity_path %>|<%= link_to "طلب حذف نشاط", wantdelete_path %>|<%= link_to "إبلاغ عن بيانات غير صحيحة", wrongdata_path %>|<%= link_to "إبلاغ عن مشكلة", complain_path %>|<%= link_to "اتصل بنا", about_path %>
 
-            <footer >
-                <p>© Mamdouh Abbas Farh 2015</p>
-            </footer>
+      <div>© Mamdouh Abbas Farh 2015</div>            
+
+    </footer>
+          
 </body>
 </html>

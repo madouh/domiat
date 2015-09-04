@@ -36,7 +36,11 @@ Rails.application.routes.draw do
   #match 'domiat/about', :as => "about", via: :get
   root 'domiat#welcome'
   resources :posts
-
+  get 'suggest' => 'posts#suggest'
+  get 'wantdelete' => 'posts#wantdelete'
+  get 'newactivity' => 'posts#newactivity'
+  get 'wrongdata' => 'posts#wrongdata'
+  get 'complain' => 'posts#complain'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

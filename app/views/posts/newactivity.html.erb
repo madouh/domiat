@@ -1,8 +1,8 @@
-<h3>رسالة </h3>
 <%= render 'form' %>
+
 <% if current_user %>
 <% if current_user.is_admin? %>
-<%= link_to 'All', posts_path %>
+<%= link_to 'Back', posts_path %>
 <% end %>
 <% end %>
 <%= link_to 'عودة', url_for(:back), :class => "btn btn-primary" %>
