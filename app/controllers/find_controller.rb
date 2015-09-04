@@ -133,6 +133,7 @@ class FindController < ApplicationController
         flash[:error] = "عفواً لا يوجد نشاط  #{sent_activity} متاح اﻵن."
         redirect_to :find_detail
     end
+  end
 
   private
   
