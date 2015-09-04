@@ -27,40 +27,26 @@
     </td>
     <td  data-no-turbolink >
       <% unless (@agent.latitude.blank? or @agent.langitude.blank?) %>
-            <% if current_user %>
-                  <% if (current_user.is_admin?) %>
+            <% if current_user.try(:admin?)  %>
                       <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
-                  <% else @agent.ok %>
+            <% else @agent.ok %>
                       <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
                  
-                  <% end %>
-            <% elsif @agent.ok %>
-                      <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
-            <% else %>
-                  <strong>لا يمكن عرص الخريطة إلا بعد مراجعة البيانات من قبل الموقع.</strong>
-
             <% end %>
+            
       <% else %>
                <strong>هذا النشاط لم يتم تسجيب احداثياتة حتى اﻵن.</strong>
 
       <% end %>
-
-
-
     </td>
-     <% if current_user %>
-            <% if (current_user.is_admin?) %>
+     <% if current_user.try(:admin?)  %>
                   <td><b>احداثيات الموقع :</b></td>
                   <td><b>Latitude</b> :<code style="font-size:16px; color:red;"> <%= @agent.latitude %></code> / <b>Langitude</b> : <code style="font-size:16px; color:red;"><%= @agent.langitude %></code></td>
-            <% else %>
+      <% else %>
                   <td><b>احداثيات الموقع :</b></td>
                   <td><b>يتم رصدها أو مراجعتها فعلياً من قبل إدارة الموقع</b></td>
-            <% end %>
-    <% else %>
-            <td><b>احداثيات الموقع :</b></td>
-            <td><b>يتم رصدها أو مراجعتها فعلياً من قبل إدارة الموقع</b></td>
-           
-    <% end %>
+      <% end %>
+    
     </tr>
   <tr>
     <td>
@@ -229,13 +215,11 @@
     </td>
   </tr>
 </table>
-<% if current_user %>
-    <% if ((current_user.is_admin?)) %>
+<% if current_user.try(:admin?)  %>
              <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
             <%= link_to 'عرض الكل', agents_path, :class => "btn btn-primary" %>
     <% elsif (@agent.email==current_user.email) %>
             <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
             
-     <% end %>
 <% end %>
 <%= link_to 'عودة', url_for(:back), :class => "btn btn-primary" %>

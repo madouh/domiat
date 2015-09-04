@@ -12,9 +12,11 @@ include SimpleCaptcha::ControllerHelpers
   # GET /posts/1
   # GET /posts/1.json
   def show
-    unless flash[:notice]
-        redirect_to :root
-    end
+       if current_user.try(:admin?) 
+        return
+      elsif !flash[:notice]
+            redirect_to :root
+      end
   end
 
   # GET /posts/new
@@ -93,15 +95,12 @@ include SimpleCaptcha::ControllerHelpers
   private
 
   def i_am_admin
-    if current_user
-      if current_user.is_admin?
+    current_user.try(:admin?) 
         return
       else
         raise "ليس من حقك الوصول لهذة الصفحة"
       end
-   else
-      raise "ليس من حقك الوصول لهذة الصفحة"
-      
+   
   end
 
   end

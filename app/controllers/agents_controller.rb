@@ -11,7 +11,7 @@ class AgentsController < ApplicationController
   # GET /agents
   # GET /agents.json
   def index
-    if current_user.is_admin? 
+    if current_user.try(:admin?) 
     @agents = Agent.all.order(:name)
     else
       redirect_to :root 

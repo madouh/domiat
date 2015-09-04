@@ -1,8 +1,6 @@
 <%= render 'form' %>
 
-<% if current_user %>
-<% if current_user.is_admin? %>
+<% if current_user.try(:admin?)  %>
 <%= link_to 'Back', posts_path %>
-<% end %>
 <% end %>
 <%= link_to 'عودة', url_for(:back), :class => "btn btn-primary" %>

@@ -16,38 +16,22 @@ class FindController < ApplicationController
     @auto.concat(@verified_agent.where('word4 LIKE ?', query).limit(5).pluck(:word4))
     @auto.concat(@verified_agent.where('word5 LIKE ?', query).limit(5).pluck(:word5))
     @auto.uniq!
-    puts "from search 00000000000000000000000000000000000"
-    puts @auto.inspect
-    puts "from search 00000000000000000000000000000000000"
-
   end
 
-  
   def corrupt
-    puts "from corrupt 00000000000000000000000000000000000"
-    puts params.inspect
-    puts "from corrupt 00000000000000000000000000000000000"
-
     if params[:search] and (((params[:search]).gsub(/\s+/, '')).length>0)
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
     @encrypted_data = crypt.encrypt_and_sign(params[:search])
-    puts params[:search]
     else
             redirect_to :root
-
     end
   end
 
   def show
-    
     if params[:search] and (((params[:search]).gsub(/\s+/, '')).length>0)
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base)
     @clean_params = crypt.decrypt_and_verify(params[:search])
-puts "////////////*////*/*/*/*/*//////////////////////*******************"
-      #decrypted_back = crypt.decrypt_and_verify(encrypted_data)
-      puts @clean_params
-        # @clean_params=@clean_params.gsub(/\s+/, ' ')
-        @result=@verified_agent.where('name=? OR activity=? OR word1=? OR word2=? OR word3=? OR word4=? OR word5=?',@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params).page params[:page]
+    @result=@verified_agent.where('name=? OR activity=? OR word1=? OR word2=? OR word3=? OR word4=? OR word5=?',@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params,@clean_params).page params[:page]
         respond_to do |format|
             format.html 
             format.js 
@@ -55,8 +39,6 @@ puts "////////////*////*/*/*/*/*//////////////////////*******************"
       else
         redirect_to :root
     end
-puts " 777777777777777777777777777777777777777777777777"
-puts @result.inspect
   end
 
    def detail
@@ -133,30 +115,29 @@ puts @result.inspect
   end # end of advanced
 
   def ads
-
       sent_activity=params[:activity]
       @result=@verified_agent.select(:id, :name,:activity,:brief_of_activity).where('activity=? ',sent_activity).limit(5).order("RANDOM()")
-      #puts @result.inspect
-
   end
 
-
-def nearest
-
+  def nearest
   end
+
   def nearestresult
     sent_activity=params[:activity]
      x= params[:latitude].to_f
     y=params[:langitude].to_f
     id=@verified_agent.select(:id).where('activity=? ',sent_activity).by_distance(:origin => [x,y]).first
-    redirect_to agent_path(id)
-  end
+    if id.present?
+        redirect_to agent_path(id)
+    else
+        flash[:error] = "عفواً لا يوجد نشاط  #{sent_activity} متاح اﻵن."
+        redirect_to :find_detail
+    end
 
   private
   
   def set_verified_agent
         @verified_agent=Agent.where('ok=?',true)
-
   end
 
   def test_if_more_than_one
@@ -181,6 +162,5 @@ def nearest
     end
 
   end # of test_if_more_than_one
- 
-  
+
 end

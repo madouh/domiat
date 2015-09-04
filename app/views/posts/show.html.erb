@@ -1,6 +1,5 @@
 
-<% if current_user %>
-<% if current_user.is_admin? %>
+<% if current_user.try(:admin?)  %>
 <p>
   <strong>Name:</strong>
   <%= @post.name %>
@@ -18,8 +17,6 @@
   <strong>Comment:</strong>
   <%= @post.comment %>
 </p>
-
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
-<% end %>
 <% end %>

@@ -1,6 +1,6 @@
 <h1>Listing Agents</h1>
 
-<table class="table table-hover table-striped" border="2">
+<table class="table table-hover table-striped" border="2"  data-no-turbolink >
   <thead>
     <tr>
       <th>الاسم</th>
@@ -69,7 +69,7 @@
           <strong>لا</strong>
           <% end %>
         </td>
-        <td style="text-align:center;" data-no-turbolink ><%= link_to "الخريطة", mapandroute_agent_path(agent), :class => "btn btn-success" %>
+        <td style="text-align:center;"><%= link_to "الخريطة", mapandroute_agent_path(agent), :class => "btn btn-success" %>
         </td>
         
         <td><%= link_to 'تعديل', edit_agent_path(agent), :class => "btn btn-primary" %></td>
