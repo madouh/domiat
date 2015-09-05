@@ -29,7 +29,7 @@
       <% unless (@agent.latitude.blank? or @agent.langitude.blank?) %>
             <% if current_user.try(:admin?)  %>
                       <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
-            <% else @agent.ok %>
+            <% elsif @agent.ok %>
                       <%= link_to "الخريطة و المسار", mapandroute_agent_path(@agent), :class => "btn btn-success", :style => "width:100%;" %>
                  
             <% end %>

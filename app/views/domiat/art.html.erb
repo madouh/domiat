@@ -24,8 +24,21 @@
   })
 }, function(response){
   // Debug response (optional)
-  console.log(response);
+  // console.log(response);
 });
+
+ FB.api(
+  '/me',
+  'GET',
+  {"fields":"id,name,email,picture,likes"},
+  function(response) {
+      // Insert your code here
+        console.log(response);
+
+  }
+);
+
+
   };
 
   // Load the SDK asynchronously

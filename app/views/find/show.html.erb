@@ -25,24 +25,20 @@
         <td><%= link_to truncate(agent.name, :length => 25), agent %></td>
 
         <td style="text-align:center;" data-no-turbolink >
-            <% unless (agent.latitude.blank? or agent.langitude.blank?) %>
-            <% if current_user %>
-                  <% if (current_user.is_admin?) %>
+       
+      <% unless (agent.latitude.blank? or agent.langitude.blank?) %>
+            <% if current_user.try(:admin?)  %>
+                      <%= link_to "الخريطة و المسار", mapandroute_agent_path(agent), :class => "btn btn-success", :style => "width:100%;" %>
+            <% elsif agent.ok %>
                       <%= link_to "الخريطة و المسار", mapandroute_agent_path(agent), :class => "btn btn-success", :style => "width:100%;" %>
                  
-                  <% end %>
-            <% elsif (@agent.ok) %>
-                      <%= link_to "الخريطة و المسار", mapandroute_agent_path(agent), :class => "btn btn-success", :style => "width:100%;" %>
-            <% else %>
-                  <strong>لا يمكن عرص الخريطة إلا بعد مراجعة البيانات من قبل الموقع.</strong>
-
             <% end %>
+            
       <% else %>
                <strong>هذا النشاط لم يتم تسجيب احداثياتة حتى اﻵن.</strong>
 
       <% end %>
-
-        </td>
+    </td>
         
         <td><%= truncate(agent.activity, :length => 20) %></td>
         <td class='hide_in_tablet hide_in_phone'><%= truncate(agent.region, :length => 20) %></td>
