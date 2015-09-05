@@ -91,22 +91,38 @@
 				<%= content_tag :p, msg, :id => key %>
 				<% end %>
     <!-- <div id="result"></div> -->
-				<script>
+
+<!-- Facebook script for login and api graph post -->
+<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '807837356004287',
       xfbml      : true,
       version    : 'v2.4'
     });
+
+
+ FB.ui({
+  method: 'share_open_graph',
+  action_type: 'og.likes',
+  action_properties: JSON.stringify({
+    object:'https://developers.facebook.com/docs/',
+  })
+}, function(response){
+  // Debug response (optional)
+  console.log(response);
+});
   };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ar_AR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
 </script>
 
 				<%= yield %>
@@ -117,12 +133,12 @@
     <footer  data-no-turbolink >
       <%= link_to "الصفحة الرئيسية", root_path %>|<%= link_to "بحث عن أقرب نشاط معين", find_detail_path %>|<%= link_to "فرصة عمل", "#" %>|<%= link_to "شقة للإيجار", "#" %>|<%= link_to "عقار للبيع", "#" %>|<%= link_to "اقتراحات", suggest_path %>|<%= link_to "إشعار بنشاط جديد أو غير مدرج", newactivity_path %>|<%= link_to "طلب حذف نشاط", wantdelete_path %>|<%= link_to "إبلاغ عن بيانات غير صحيحة", wrongdata_path %>|<%= link_to "إبلاغ عن مشكلة", complain_path %>|<%= link_to "اتصل بنا", about_path %>
 
-      <div>© Mamdouh Abbas Farh 2015 <div
+      <div>© Mamdouh Abbas Farh 2015  <div
   class="fb-like"
   data-share="true"
   data-width="450"
   data-show-faces="true">
-</div></div>            
+</div> </div>            
 
     </footer>
           
