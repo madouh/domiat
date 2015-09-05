@@ -7,3 +7,34 @@
 <% end %>
 
 <%= video_tag("https://s3-us-west-2.amazonaws.com/artpics/CSS+for+Developers+Creating+and+formatting+image+borders+first+3+seconds+only.mp4----", size: "560x400", poster: "https://s3-us-west-2.amazonaws.com/artpics/10000011.gif", controls: true, autobuffer: true) %>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '807837356004287',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+
+
+ FB.ui({
+  method: 'share_open_graph',
+  action_type: 'og.likes',
+  action_properties: JSON.stringify({
+    object:'http://www.new-domiat.com/about',
+  })
+}, function(response){
+  // Debug response (optional)
+  console.log(response);
+});
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ar_AR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+</script>
