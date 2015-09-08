@@ -17,7 +17,6 @@
  *= require chosen
  *= require_tree .
  */
-
 #the_top_of_the_page{
   margin-top: 30px;
 }
@@ -29,7 +28,7 @@ body > nav.pagination > span {
   padding-left: 10px;
   font-size: 16px;
 }
-
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li.dropdown{margin-right: -10px}
 .ui-autocomplete { height: 100px; overflow-y: scroll; overflow-x: hidden;}
 
 body > nav{
@@ -69,8 +68,8 @@ body > ul > li > a > span{
 }
 
 .navbar-right{
-	  margin-top: 16px;
-  	font-size: 13px;
+	 /* margin-top: 16px;
+  	font-size: 13px;*/
 }
 
 #error{

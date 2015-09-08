@@ -1,45 +1,68 @@
-<h3>The Art Gallary</h3>
-<% announce_id=1 %>
-<% pic_no=3 %>
-<% pic_start=1000000+announce_id %>
-<% (1..pic_no).each do |i| %>
-<%= image_tag("https://s3-us-west-2.amazonaws.com/artpics/#{pic_start}#{i}.gif----", height: '250', width: '250') %>
-<% end %>
-
-<%= video_tag("https://s3-us-west-2.amazonaws.com/artpics/CSS+for+Developers+Creating+and+formatting+image+borders+first+3+seconds+only.mp4----", size: "560x400", poster: "https://s3-us-west-2.amazonaws.com/artpics/10000011.gif", controls: true, autobuffer: true) %>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '807837356004287',
       xfbml      : true,
       version    : 'v2.4'
+
     });
 
+FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+          console.log(response);
 
- FB.ui({
-  method: 'share_open_graph',
-  action_type: 'og.likes',
-  action_properties: JSON.stringify({
-    object:'http://www.new-domiat.com/about',
-  })
-}, function(response){
-  // Debug response (optional)
-  // console.log(response);
-});
+    // the user is logged in and has authenticated your
+    // app, and response.authResponse supplies
+    // the user's ID, a valid access token, a signed
+    // request, and the time the access token 
+    // and signed request each expire
+    var uid = response.authResponse.userID;
+    var accessToken = response.authResponse.accessToken;
+  } else if (response.status === 'not_authorized') {
+          console.log(response);
 
- FB.api(
-  '/me',
-  'GET',
-  {"fields":"id,name,email,picture,likes"},
+    // the user is logged in to Facebook, 
+    // but has not authenticated your app
+  } else {
+    // the user isn't logged in to Facebook.
+          console.log(response);
+
+  }
+ });
+//  FB.ui({
+//   method: 'share_open_graph',
+//   action_type: 'og.likes',
+//   action_properties: JSON.stringify({
+//     object:'http://www.new-domiat.com/about',
+//   })
+// }, function(response){
+//   // Debug response (optional)
+//   // console.log(response);
+// });
+
+//  FB.api(
+//   '/me',
+//   'GET',
+//   {"fields":"id,name,email,picture,likes"},
+//   function(response) {
+//       // Insert your code here
+//         console.log(response);
+
+//   }
+// );
+FB.api(
+  '/me/feed',
+  'POST',
+  {"link":"www.new-domiat.com","message":"welcome to new dmiat city"},
   function(response) {
       // Insert your code here
-        console.log(response);
-
+      console.log(response);
   }
 );
 
-
   };
+
+
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -51,3 +74,17 @@
   }(document, 'script', 'facebook-jssdk'));
 
 </script>
+<h3>The Art Gallary</h3>
+<% announce_id=1 %>
+<% pic_no=3 %>
+<% pic_start=1000000+announce_id %>
+
+<% (1..pic_no).each do |i| %>
+<%= image_tag("https://s3-us-west-2.amazonaws.com/artpics/#{pic_start}#{i}.gif", height: '250', width: '250') %>
+
+  <% end %>
+<div class="fb-follow"></div>
+<%= video_tag("https://s3-us-west-2.amazonaws.com/artpics/CSS+for+Developers+Creating+and+formatting+image+borders+first+3+seconds+only.mp4", size: "560x400", poster: "https://s3-us-west-2.amazonaws.com/artpics/10000011.gif", controls: true, autobuffer: true) %>
+
+<div class="fb-comments" data-href="https://www.facebook.com/mam7h" data-numposts="5"></div>
+<br>

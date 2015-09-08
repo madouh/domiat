@@ -13,5 +13,9 @@ class ApplicationController < ActionController::Base
             devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password,:password_confirmation) }
             devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password,:password_confirmation) }
         end
+        def current_facer
+        	@current_facer||=Facer.find(session[:user_id]) if session[:user_id]
+        end
+        helper_method :current_facer
     
 end

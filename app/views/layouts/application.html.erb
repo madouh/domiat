@@ -62,21 +62,35 @@
       <% end %>
 
       <ul class="nav navbar-nav navbar-right">
-
-        <% if user_signed_in? %>
-
         
+      <% if current_facer %>
 
-        <li><strong> <%= link_to "إدراج نشاط", new_agent_path %></strong></li>
-        <% if (current_user.is_admin?) %>
-                   <li style="display:none"><strong> <%= link_to "الانتظار", agents_waited_path %></strong></li>
-          <% end %>
-				<li><strong>مرحبا <%= current_user.username %></strong> -|-
-				<strong><%= link_to "خروج", destroy_user_session_path , :method => 'delete' %></strong></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_facer.name %><span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+          
+            <li><a href="#">جامعات و مدارس</a></li>
+            <li><a href="#">خدمات حكومية</a></li>
+            <li class="divider"></li>
+            <li><%= link_to "إدراج نشاط", new_agent_path %></li>
+            <li class="divider"></li>
+            <% if (current_facer.admin?) %>
+            <li style="display:none"><strong> <%= link_to "الانتظار", agents_waited_path %></strong></li>
+            <% end %>
+            <li><a href="#">عقار للبيع</a></li>
+            <li class="divider"></li>
+            <li><%= link_to "خروج",signout_path,id: "sign_out" %></li>
+          </ul>
+        </li>
+        <li>
+
+          <%= image_tag(current_facer.image, height: '50', width: '50', :style => "margin-right:-41px", :class =>"hide_in_tablet hide_in_phone") %></li>
 
 				<% else %>
+				<li><%= link_to "سجّل مع فيس بوك", "/auth/facebook", id: "sign_in" %></li>
+        <li>
 
-				<li><strong><%= link_to "دخول", new_user_session_path %></strong>-|-<strong><%= link_to "عميل جديد", new_user_registration_path %></strong></li>
+          <%= image_tag('facebook.png', height: '50', width: '50', :style => "margin-right:-41px", :class =>"hide_in_tablet hide_in_phone") %></li>
 				<% end %>
 
       </ul>

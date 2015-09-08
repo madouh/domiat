@@ -11,13 +11,16 @@ gem 'rails_exception_handler', "~> 2"
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
-gem 'thin'
+# gem 'thin'
+gem "passenger"
+
 #gem 'will_paginate'
 gem 'kaminari'
 #gem "jquery-rails", "~> 2.3.0"
 gem 'geokit-rails'
 # gem 'mapbox-rails'
 gem "koala", "~> 2.2"
+gem 'omniauth-facebook'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "compass-rails", github: "Compass/compass-rails", branch: "master"
