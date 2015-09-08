@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 #gem 'clockwork'
 #gem "heroku_backup_task"
 gem "pgbackups-archive"
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'aws-s3' 
 gem 'rails_exception_handler', "~> 2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
