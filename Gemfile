@@ -14,7 +14,7 @@ gem 'rails', '4.2.0'
 gem 'pg'
 # gem 'thin'
 gem "passenger"
-
+gem 'turnout'
 #gem 'will_paginate'
 gem 'kaminari'
 #gem "jquery-rails", "~> 2.3.0"
