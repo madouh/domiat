@@ -215,11 +215,13 @@
     </td>
   </tr>
 </table>
-<% if current_user.try(:admin?)  %>
-             <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
-            <%= link_to 'عرض الكل', agents_path, :class => "btn btn-primary" %>
-    <% elsif (@agent.email==current_user.email) %>
-            <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
-            
+<% if current_user %>
+    <% if current_user.try(:admin?)  %>
+                 <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
+                <%= link_to 'عرض الكل', agents_path, :class => "btn btn-primary" %>
+        <% elsif (@agent.email==current_user.email) %>
+                <%= link_to 'تعديل', edit_agent_path(@agent), :class => "btn btn-info", :style => "margin-right:20px" %> 
+                
+    <% end %>
 <% end %>
 <%= link_to 'عودة', url_for(:back), :class => "btn btn-primary" %>
