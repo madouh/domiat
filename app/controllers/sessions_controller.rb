@@ -2,11 +2,11 @@ class SessionsController < ApplicationController
 	def create
 		facer=Facer.from_omniauth(env["omniauth.auth"])
 		session[:user_id]=facer.id
-		redirect_to :domiat_art
+		redirect_to :root
 	end
 	def destroy
 		session[:user_id]=nil
-		redirect_to :domiat_art
+		redirect_to :root
 	end
 
 	private
